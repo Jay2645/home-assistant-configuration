@@ -1,0 +1,42 @@
+# Generic ignores
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.pyc
+._*
+__pycache__
+*.pickle
+*.token
+
+# Directory (contents) ignores
+.cloud
+.storage
+deps
+old
+tts
+
+# Specific file ignores
+www/*.html
+.config_entries.json
+.HA_VERSION
+.spotify-token-cache
+.shopping_list.json
+.uuid
+core
+google_calendars.yaml
+harmony_harmony_hub.conf
+html5_push_registrations.conf
+ip_bans.yaml
+known_devices.yaml
+options.xml
+secrets.yaml
+plex.conf
+
+# Ignore files created by IDE's
+.vscode
+.theia
+.Trash*
+
+# Specific keeps
+!.gitkeep
