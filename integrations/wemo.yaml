@@ -1,0 +1,5 @@
+wemo:
+ discovery: true
+ static:
+   - 192.168.86.232
+   - 192.168.86.233

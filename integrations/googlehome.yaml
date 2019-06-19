@@ -1,0 +1,11 @@
+googlehome:
+ devices:
+   - host: 192.168.86.24
+     track_alarms: true
+     track_devices: true
+   - host: 192.168.86.25
+     track_alarms: true
+     track_devices: true
+   - host: 192.168.86.26
+     track_alarms: true
+     track_devices: true

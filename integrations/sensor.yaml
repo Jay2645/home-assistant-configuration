@@ -1,0 +1,28 @@
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+  - platform: ring
+  - platform: template
+    sensors:
+      bedroom_chromecast_on: 
+        value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Watch Chromecast')}}"
+      bedroom_videogames_on: 
+        value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Play Videogames')}}"
+  - platform: nextbus
+    agency: lametro-rail
+    route: "804"
+    stop: "80409_0"
+    name: "Union Station to Memorial Park"
+  - platform: nextbus
+    agency: lametro-rail
+    route: "804"
+    stop: "80418_1"
+    name: "Memorial Park to Union Station"
+#  - platform: rpi_power
+#    text_state: true
+  - platform: plex_recently_added
+    token: !secret plex_token
+    host: localhost
+    port: 32400
+    max: 5

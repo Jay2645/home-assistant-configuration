@@ -1,4 +1,0 @@
-default: info
-logs:
-  homeassistant.components.device_tracker: critical
-  homeassistant.components.nextbus: debug

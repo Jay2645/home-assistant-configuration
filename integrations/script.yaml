@@ -1,0 +1,11 @@
+script:
+  speak:
+    alias: TTS Handler
+    sequence:
+    - condition: "time"
+      after: "12:00"
+      before: "03:00"
+    - data_template:
+        message: '{{ message }}'
+      entity_id: group.broadcast_speakers
+      service: tts.google_translate_say

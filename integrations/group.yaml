@@ -1,0 +1,12 @@
+group:
+  Household:
+    - group.cuties
+
+  Cuties:
+    - person.jay_stevens
+    - person.michelle_kimsey_bailey
+
+  Broadcast Speakers:
+    - media_player.bathroom_speaker
+    - media_player.bedroom_speaker
+    - media_player.office_speaker

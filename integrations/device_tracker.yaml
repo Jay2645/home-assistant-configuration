@@ -1,0 +1,16 @@
+device_tracker:
+  - platform: ping
+    hosts:
+      jay_pixel2: 192.168.86.20
+      michelle_pixel: 192.168.86.230
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: true
+  - platform: nmap_tracker
+    hosts: 192.168.86.*
+    scan_options: " --privileged -sP "
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: true

@@ -1,0 +1,4 @@
+http:
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_key
+  base_url: !secret hass_url

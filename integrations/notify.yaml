@@ -1,0 +1,6 @@
+notify:
+ - platform: html5
+   name: push_hass
+   vapid_pub_key: BKSMp9OUhOjvSQhwJTAhzsLkbmUsH0i4PO_yjutBUmX1uCOcJDhP2SfaigSJYeSVeCSjVxEkij3dUnBRPvDfIxM
+   vapid_prv_key: !secret vapid_prv_key
+   vapid_email: !secret jay_email
