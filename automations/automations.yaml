@@ -177,7 +177,7 @@
   condition:
   - condition: state
     entity_id: media_player.bedroom_speaker
-    state: idle
+    state: 'off'
   action:
   - data:
       message: It's time for Jay to go to bed!
@@ -330,3 +330,16 @@
       media_content_id: https://www.youtube.com/watch?v=AXwGVXD7qEQ
       media_content_type: VIDEO
     service: media_extractor.play_media
+- id: 'Fire Wake Up Event'
+  trigger:
+  - entity_id: media_player.bedroom_speaker
+    from: 'playing'
+    platform: state
+    to: 'paused'
+  condition:
+  - condition: state
+    entity_id: person.michelle_kimsey_bailey
+    state: not_home
+  action:
+  - event: morning_greeting
+    event_data: {}
