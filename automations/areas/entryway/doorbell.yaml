@@ -1,0 +1,11 @@
+id: '1560322936238'
+alias: Fire Doorbell Event
+trigger:
+- entity_id: binary_sensor.ring_front_door_ding
+  from: 'off'
+  platform: state
+  to: 'on'
+condition: []
+action:
+- event: ring_doorbell
+  event_data: {}

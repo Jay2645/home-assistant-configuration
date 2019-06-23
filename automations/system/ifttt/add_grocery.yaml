@@ -1,0 +1,11 @@
+id: ifttt_grocery_added
+alias: IFTTT Added Grocery
+trigger:
+- event_data:
+    action: add_grocery
+  event_type: ifttt_webhook_received
+  platform: event
+action:
+- data_template:
+    name: '{{ trigger.event.data.item }}'
+  service: shopping_list.add_item

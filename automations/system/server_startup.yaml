@@ -1,0 +1,19 @@
+id: '1557987182300'
+alias: Server Startup
+trigger:
+- event: start
+  platform: homeassistant
+condition:
+- condition: state
+  entity_id: group.household
+  state: home
+action:
+- data:
+    message: The server is online!
+  service: notify.push_hass
+- condition: state
+  entity_id: person.michelle_kimsey_bailey
+  state: not_home
+- data:
+    message: The server is online!
+  service: script.speak

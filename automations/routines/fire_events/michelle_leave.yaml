@@ -1,0 +1,12 @@
+id: '1557988683778'
+alias: Fire Michelle Leave Event
+trigger:
+- entity_id: person.michelle_kimsey_bailey
+  for: '15'
+  from: home
+  platform: state
+  to: not_home
+condition: []
+action:
+- event: michelle_leave
+  event_data: {}

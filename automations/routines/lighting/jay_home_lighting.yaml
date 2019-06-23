@@ -1,0 +1,14 @@
+id: '1557989063218'
+alias: Jay Home Lighting
+trigger:
+- event_data: {}
+  event_type: jay_home
+  platform: event
+condition:
+- condition: state
+  entity_id: person.michelle_kimsey_bailey
+  state: not_home
+action:
+- data:
+    entity_id: light.office
+  service: light.turn_on

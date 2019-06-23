@@ -1,0 +1,10 @@
+id: '1560323126944'
+alias: Ring Doorbell
+trigger:
+- event_data: {}
+  event_type: ring_doorbell
+  platform: event
+action:
+- data:
+    message: Ding dong! Someone is at the door!
+  service: script.speak

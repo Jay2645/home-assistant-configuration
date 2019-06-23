@@ -1,0 +1,10 @@
+id: '1560492989895'
+alias: Pizza Out of Oven
+trigger:
+- event_data: {}
+  event_type: pizza_out_of_oven
+  platform: event
+action:
+- data:
+    message: Your pizza is out of the oven!
+  service: script.speak

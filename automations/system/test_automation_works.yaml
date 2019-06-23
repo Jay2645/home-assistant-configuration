@@ -1,0 +1,13 @@
+id: '1560661950760'
+alias: Test Working
+trigger:
+- event_data: {}
+  event_type: test_working
+  platform: event
+condition: []
+action:
+- data:
+    entity_id: group.broadcast_speakers
+    media_content_id: https://www.youtube.com/watch?v=AXwGVXD7qEQ
+    media_content_type: VIDEO
+  service: media_extractor.play_media

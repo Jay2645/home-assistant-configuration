@@ -1,0 +1,16 @@
+id: '1557988636756'
+alias: Fire Nobody Home Event
+trigger:
+- event_data: {}
+  event_type: jay_leave
+  platform: event
+- event_data: {}
+  event_type: michelle_leave
+  platform: event
+condition:
+- condition: state
+  entity_id: group.household
+  state: not_home
+action:
+- event: nobody_home
+  event_data: {}

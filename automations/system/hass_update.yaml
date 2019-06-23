@@ -1,0 +1,9 @@
+id: Update Available Notification
+alias: Update Available Notification
+trigger:
+- entity_id: updater.updater
+  platform: state
+action:
+- data:
+    message: An update for Home Assistant is available.
+  service: notify.push_hass

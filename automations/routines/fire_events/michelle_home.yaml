@@ -1,0 +1,13 @@
+id: '1558072937765'
+alias: Fire Michelle Home Event
+trigger:
+- entity_id: person.michelle_kimsey_bailey
+  from: not_home
+  platform: state
+  to: home
+condition: []
+action:
+- event: michelle_home
+  event_data: {}
+- data: {}
+  service: switch.turn_on

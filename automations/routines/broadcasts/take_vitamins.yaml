@@ -1,0 +1,10 @@
+id: '1560493152641'
+alias: Vitamin Alert
+trigger:
+- event_data: {}
+  event_type: vitamin_alert
+  platform: event
+action:
+- data:
+    message: All cuties should take their vitamins now
+  service: script.speak

@@ -1,0 +1,11 @@
+id: ifttt_webhook_event
+alias: Fire IFTTT Webhook Event
+trigger:
+- event_data:
+    action: fire_event
+  event_type: ifttt_webhook_received
+  platform: event
+action:
+- data_template:
+    entity_id: automation.{{ trigger.event.data.event_name }}
+  service: automation.trigger

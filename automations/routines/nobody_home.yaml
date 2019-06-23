@@ -1,0 +1,14 @@
+id: '1560485118469'
+alias: Nobody Home
+trigger:
+- event_data: {}
+  event_type: nobody_home
+  platform: event
+condition: []
+action:
+- data: {}
+  service: switch.turn_off
+- data: {}
+  service: light.turn_off
+- data: {}
+  service: homeassistant.restart

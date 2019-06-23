@@ -1,0 +1,11 @@
+id: '1558072582778'
+alias: Fire Jay Leave Event
+trigger:
+- entity_id: person.jay_stevens
+  from: home
+  platform: state
+  to: not_home
+condition: []
+action:
+- event: jay_leave
+  event_data: {}

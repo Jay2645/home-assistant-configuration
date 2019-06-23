@@ -1,0 +1,11 @@
+id: '1558072744651'
+alias: Fire Jay Home Event
+trigger:
+- entity_id: person.jay_stevens
+  from: not_home
+  platform: state
+  to: home
+condition: []
+action:
+- event: jay_home
+  event_data: {}

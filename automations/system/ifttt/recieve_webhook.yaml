@@ -1,0 +1,11 @@
+id: ifttt_webhook
+alias: Receive IFTTT Webhook
+trigger:
+- event_data:
+    action: call_service
+  event_type: ifttt_webhook_received
+  platform: event
+action:
+- data_template:
+    message: '{{ trigger.event.data.message }}'
+  service_template: '{{ trigger.event.data.service }}'
