@@ -1,3 +1,6 @@
-#switch:
+switch:
+  - platform: flux
+    lights:
+      - light.office_light
 #  platform: hadockermon
 #  host: localhost
