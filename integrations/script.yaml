@@ -2,13 +2,7 @@ script:
   speak:
     alias: TTS Handler
     sequence:
-    - condition: "time"
-      after: "12:00"
-      before: "03:00"
-    - condition: "state"
-      entity_id: "binary_sensor.speakers_playing"
-      state: "off"
     - data_template:
         message: '{{ message }}'
-      entity_id: group.broadcast_speakers
-      service: tts.google_translate_say
+        entity_id: 'group.broadcast_speakers'
+      service: python_script.speak
