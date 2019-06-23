@@ -9,6 +9,9 @@ condition:
   state: not_home
 action:
 - data:
+    message: The server is online!
+  service: notify.push_hass
+- data:
     message: The server detected that there's nobody home. If you're hearing this,
       that means Jay fucked up and you should tell him that his shit doesn't work.
       Also, be good, Moo! Baby cat! Little Mooseph!

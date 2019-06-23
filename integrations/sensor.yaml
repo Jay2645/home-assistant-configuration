@@ -10,10 +10,10 @@ sensor:
       bedroom_videogames_on: 
         value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Play Videogames')}}"
       outside_temperature:
-        value_template: "{{ states.weather.dark_sky.attributes.temperature }}"
+        value_template: "{{ states.weather.dark_sky.attributes.temperature|float }}"
         unit_of_measurement: 'degrees'
       inside_temperature:
-        value_template: "{{ states.climate.main_a_c.attributes.current_temperature }}"
+        value_template: "{{ states.climate.main_a_c.attributes.current_temperature|float }}"
         unit_of_measurement: 'degrees'
   - platform: nextbus
     agency: lametro-rail

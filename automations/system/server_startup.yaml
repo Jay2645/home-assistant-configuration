@@ -10,9 +10,7 @@ condition:
 action:
 - data:
     message: The server is online!
-  service: notify.push_hass
-- data:
-    message: The server is online!
     entity_id: 'group.broadcast_speakers'
     bug_michelle: False
+    push_notification: True
   service: python_script.speak
