@@ -1,2 +1,8 @@
 binary_sensor:
   - platform: ring
+  - platform: template
+    sensors:
+      cuties_asleep:
+        value_template: >-
+          {{ is_state('media_player.bedroom_speaker', 'playing')
+             and states.media_player.bedroom_speaker.attributes.media_title == "Rain sounds" }}
