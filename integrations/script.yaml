@@ -5,6 +5,9 @@ script:
     - condition: "time"
       after: "12:00"
       before: "03:00"
+    - condition: "state"
+      entity_id: "binary_sensor.speakers_playing"
+      state: "off"
     - data_template:
         message: '{{ message }}'
       entity_id: group.broadcast_speakers
