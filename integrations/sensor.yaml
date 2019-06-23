@@ -30,3 +30,7 @@ sensor:
     host: localhost
     port: 32400
     max: 5
+  - platform: xbox_live
+    api_key: !secret xbox_api
+    xuid:
+      - !secret jay_xbox_id
