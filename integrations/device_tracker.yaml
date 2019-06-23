@@ -7,10 +7,10 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
       hide_if_away: true
-  - platform: nmap_tracker
-    hosts: 192.168.86.*
-    scan_options: " --privileged -sP "
-    consider_home: 900
-    new_device_defaults:
-      track_new_devices: false
-      hide_if_away: true
+#  - platform: nmap_tracker
+#    hosts: 192.168.86.*
+#    scan_options: " --privileged -sP "
+#    consider_home: 900
+#    new_device_defaults:
+#      track_new_devices: false
+#      hide_if_away: true
