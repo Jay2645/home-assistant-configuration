@@ -8,6 +8,8 @@ condition:
   entity_id: group.household
   state: home
 action:
+- delay:
+    seconds: 30
 - data:
     message: The server is online!
     entity_id: 'group.broadcast_speakers'
