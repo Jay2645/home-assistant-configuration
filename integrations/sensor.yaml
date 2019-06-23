@@ -9,6 +9,10 @@ sensor:
         value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Watch Chromecast')}}"
       bedroom_videogames_on: 
         value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Play Videogames')}}"
+      outside_temperature:
+        value_template: "{{ states.weather.dark_sky.attributes.temperature }}"
+      inside_temperature:
+        value_template: "{{ states.climate.main_a_c.attributes.current_temperature }}"
   - platform: nextbus
     agency: lametro-rail
     route: "804"
