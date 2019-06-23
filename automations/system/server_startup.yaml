@@ -11,9 +11,8 @@ action:
 - data:
     message: The server is online!
   service: notify.push_hass
-- condition: state
-  entity_id: person.michelle_kimsey_bailey
-  state: not_home
 - data:
     message: The server is online!
-  service: script.speak
+    entity_id: 'group.broadcast_speakers'
+    bug_michelle: False
+  service: python_script.speak
