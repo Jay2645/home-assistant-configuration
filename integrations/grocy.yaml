@@ -1,5 +1,0 @@
-#grocy:
-#  url: http://localhost:9283/api/
-#  api_key: !secret grocy_api
-#  sensor:
-#    - enabled: true

@@ -5,9 +5,10 @@ trigger:
   from: not_home
   platform: state
   to: home
-condition: []
+condition: 
+- condition: state
+  entity_id: input_boolean.server_initialized
+  state: 'on'
 action:
 - event: michelle_home
   event_data: {}
-- data: {}
-  service: switch.turn_on

@@ -1,0 +1,9 @@
+alias: "Bedroom Stop Playing"
+trigger:
+- entity_id: media_player.bedroom_tv
+  platform: state
+  from: 'playing'
+condition: []
+action:
+- event: on_bedroom_tv_playback_stop
+  event_data: {}

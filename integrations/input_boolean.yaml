@@ -1,5 +1,1 @@
-input_boolean:
-  is_jay_bedtime:
-    name: Time for Jay to go to bed
-    initial: off
-    icon: mdi:alarm
+#input_boolean:

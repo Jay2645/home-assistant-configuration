@@ -2,6 +2,12 @@
 sensor:
   # Weather prediction
   - platform: yr
+  - platform: moon
+  - platform: time_date
+    display_options:
+      - 'date_time'
+  - platform: uptime
+    unit_of_measurement: minutes
   - platform: ring
   - platform: template
     sensors:
@@ -15,24 +21,32 @@ sensor:
       inside_temperature:
         value_template: "{{ states.climate.main_a_c.attributes.current_temperature|float }}"
         unit_of_measurement: 'degrees'
-  - platform: nextbus
-    agency: lametro-rail
-    route: "804"
-    stop: "80409_0"
-    name: "Union Station to Memorial Park"
-  - platform: nextbus
-    agency: lametro-rail
-    route: "804"
-    stop: "80418_1"
-    name: "Memorial Park to Union Station"
-#  - platform: rpi_power
-#    text_state: true
-  - platform: plex_recently_added
-    token: !secret plex_token
-    host: localhost
-    port: 32400
-    max: 5
-  - platform: xbox_live
-    api_key: !secret xbox_api
-    xuid:
-      - !secret jay_xbox_id
+      media_center:
+        value_template: '{{ states.remote.harmony_hub.attributes.current_activity }}'
+        friendly_name: 'Bedroom TV'
+  - platform: waze_travel_time
+    name: Travel Time Jay Work to Home
+    origin: zone.jay_work
+    destination: zone.home
+    excl_filter: "HOV"
+    region: 'US'
+  - platform: waze_travel_time
+    name: Travel Time Home to Jay Work
+    origin: zone.home
+    destination: zone.jay_work
+    excl_filter: "HOV"
+    region: 'US'
+  - platform: mqtt
+    name: "Plex Playing"
+    state_topic: "plex/update"
+    value_template: '{{ value_json.event == "media.resume" or value_json.event == "media.play" }}'
+    force_update: true
+    json_attributes_topic: "plex/update/attributes"
+  - platform: deluge
+    host: !secret nas_server_ip
+    username: !secret deluge_username
+    password: !secret deluge_password
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'

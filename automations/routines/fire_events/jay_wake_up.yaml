@@ -5,10 +5,6 @@ trigger:
   from: 'on'
   platform: state
   to: 'off'
-condition:
-- condition: state
-  entity_id: person.michelle_kimsey_bailey
-  state: not_home
 action:
-- event: jay_morning_greeting
+- event: morning_greeting
   event_data: {}

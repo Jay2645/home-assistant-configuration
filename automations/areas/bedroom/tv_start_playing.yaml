@@ -1,0 +1,9 @@
+alias: "Bedroom Start Playing"
+trigger:
+- entity_id: media_player.bedroom_tv
+  platform: state
+  to: 'playing'
+condition: []
+action:
+- event: on_bedroom_tv_playback_start
+  event_data: {}

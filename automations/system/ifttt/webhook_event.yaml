@@ -9,3 +9,6 @@ action:
 - data_template:
     entity_id: automation.{{ trigger.event.data.event_name }}
   service: automation.trigger
+- service: notify.notify
+  data:
+    message: "Webhook event fired!"

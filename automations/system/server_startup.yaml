@@ -9,7 +9,9 @@ condition:
   state: home
 action:
 - delay:
-    seconds: 30
+    seconds: 60
+- service: input_boolean.turn_on
+  entity_id: input_boolean.server_initialized
 - data:
     message: The server is online!
     entity_id: 'group.broadcast_speakers'

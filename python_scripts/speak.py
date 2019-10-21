@@ -1,6 +1,14 @@
 message = data.get('message')
+initialized = hass.states.is_state('input_boolean.server_initialized', 'on')
 
-if message is not None:
+should_broadcast = False
+also_push_notify = False
+
+if not initialized:
+    uptime = hass.states.get('sensor.uptime', 0)
+    initialized = uptime >= 1
+
+if message is not None and initialized:
     entity_id = data.get('entity_id', 'group.broadcast_speakers')
     should_michelle_hear = data.get('bug_michelle', True)
     also_push_notify = data.get('push_notification', False)
@@ -25,7 +33,9 @@ if message is not None:
         service_data = {'entity_id': entity_id, 'message': message }
         hass.services.call('tts', 'google_translate_say', service_data, True)
     
-    # If broadcasting failed or we should also do a push notification, do that
-    if also_push_notify or not should_broadcast:
-        service_data = {'message': message}
-        hass.services.call('notify', 'push_hass', service_data, True)
+# If broadcasting failed or we should also do a push notification, do that
+if also_push_notify or not should_broadcast:
+    if not should_broadcast:
+        message = "Failed broadcast: " + message
+    service_data = {'message': message}
+    hass.services.call('notify', 'push_hass', service_data, True)

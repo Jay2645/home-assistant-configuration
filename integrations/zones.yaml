@@ -1,0 +1,16 @@
+zone:
+  - name: Home
+    latitude: !secret lat
+    longitude: !secret long
+    radius: 50
+    icon: mdi:home
+  - name: School
+    latitude: !secret school_lat
+    longitude: !secret school_long
+    radius: 750
+    icon: mdi:school
+  - name: Jay Work
+    latitude: !secret jay_work_lat
+    longitude: !secret jay_work_long
+    radius: 100
+    icon: mdi:gamepad-variant

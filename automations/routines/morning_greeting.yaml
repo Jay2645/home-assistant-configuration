@@ -1,0 +1,18 @@
+id: 'Morning Greeting'
+alias: Morning Greeting
+trigger:
+- event_data: {}
+  event_type: morning_greeting
+  platform: event
+condition:
+  condition: time
+  after: '12:00:00'
+  before: '18:00:00'
+action:
+- data:
+    entity_id: light.bedroom
+  service: light.turn_on
+- data:
+    message: Good afternoon!
+    bug_michelle: true
+  service: python_script.speak

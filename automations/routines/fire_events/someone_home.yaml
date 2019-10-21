@@ -1,8 +1,8 @@
-alias: Fire Nobody Home Event
+alias: Fire Someone Home Event
 trigger:
 - entity_id: binary_sensor.cutie_home
   platform: state
-  to: 'off'
+  to: 'on'
 action:
-- event: nobody_home
+- event: someone_home
   event_data: {}

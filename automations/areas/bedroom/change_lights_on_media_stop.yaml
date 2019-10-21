@@ -1,0 +1,15 @@
+alias: Brighten Bedroom Lights on Media Stop
+trigger:
+- event_data: {}
+  event_type: on_bedroom_tv_playback_stop
+  platform: event
+action:
+- service: switch.turn_on
+  entity_id: switch.bedroom_fan
+- condition: state
+  entity_id: light.bedroom
+  state: "on"
+- service: hue.hue_activate_scene
+  data:
+    group_name: "Bedroom"
+    scene_name: "Bright"

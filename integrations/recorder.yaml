@@ -1,0 +1,19 @@
+recorder:
+  purge_keep_days: 4
+  exclude:
+    domains:
+      - automation
+      - calendar
+      - device_tracker
+      - group
+      - script
+      - zone
+    entities:
+      - sun.sun
+      - sensor.date_time
+      - sensor.moon
+      - sensor.next_subway_to_union_station
+      - sensor.next_subway_to_work
+      - sensor.plex_recently_added
+      - switch.flux
+      - sensor.yr_symbol
