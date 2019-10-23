@@ -13,4 +13,4 @@ time_zone: America/Los_Angeles
 customize: !include customizations/customize.yaml
 
 # Load packages
-packages: !include_dir_named integrations
+packages: !include_dir_named packages

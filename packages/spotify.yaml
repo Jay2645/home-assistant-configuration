@@ -1,0 +1,191 @@
+media_player:
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+
+spotcast:
+  username: !secret spotify_username
+  password: !secret spotify_password
+
+group:
+  home_spotify_player:
+    name: Spotify Player
+    entities:
+      - media_player.spotify
+  
+  home_spotify_controls:
+    name: Spotify Controls
+    control: hidden
+    entities:
+      - input_select.spotify_playlist
+      - input_select.spotify_source
+      - script.spotify_music
+      - input_number.spotify_volume
+      - input_boolean.spotify_shuffle
+
+
+homeassistant:
+  customize:
+    script.spotify_music:
+      friendly_name: 'Play'
+      icon: mdi:play
+
+sensor:
+  - platform: template
+    sensors:
+      spotify_volume:
+        friendly_name: "Spotify Volume"
+        value_template: "{{ states.media_player.spotify.attributes.volume_level }}"
+  - platform: template
+    sensors:
+      spotify_shuffle:
+        friendly_name: "Spotify Shuffle"
+        value_template: "{{ states.media_player.spotify.attributes.shuffle }}"
+  - platform: template
+    sensors:
+      spotify_source:
+        friendly_name: "Spotify Source"
+        value_template: "{{ states.media_player.spotify.attributes.source }}"
+
+input_number:
+  spotify_volume:
+    name: Volume
+    icon: mdi:volume-high
+    initial: 100
+    min: 0
+    max: 100
+    step: 1
+
+input_select:
+  spotify_playlist:
+    name: 'Playlist:'
+    options:
+      - Made In Germany
+      - Murmel
+      - Chillige Bässe
+      - Chillstep
+      - Mixed Hip Hop
+      - Mixed Electro
+      - Mixed Rock
+      - Mixed Dub
+      - Good Feeling
+      - Nightair
+      - Streetbangers
+    icon: mdi:spotify
+  spotify_source:
+    name: 'Source:'
+    options:
+      - "Living Room"
+      - "Home"
+      - "Bedroom"
+      - "Bedroom Speaker"
+      - "Pixel 2"
+    initial: "Home"
+    icon: mdi:speaker-wireless
+
+input_boolean:
+  spotify_shuffle:
+    name: Shuffle
+    icon: mdi:shuffle-variant
+
+script:
+  spotify_music:
+    alias: "Play selected spotify playlist"
+    sequence:
+      - service: media_player.select_source
+        data_template: 
+          entity_id: media_player.spotify
+          source: >
+            {% if is_state("input_select.spotify_source", "Living Room") %} Living Room
+            {% elif is_state("input_select.spotify_source", "Home") %} Home
+            {% elif is_state("input_select.spotify_source", "Bedroom") %} Bedroom
+            {% elif is_state("input_select.spotify_source", "Bedroom Speaker") %} Bedroom Speaker
+            {% elif is_state("input_select.spotify_source", "Pixel 2") %} Pixel 2
+            {% endif %}
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+          media_content_id: >
+            {% if is_state("input_select.spotify_playlist", "Made In Germany") %} spotify:user:playlists.germany:playlist:5M7jfvXr6fiQ21U8jfe9aE
+            {% elif is_state("input_select.spotify_playlist", "Murmel") %} spotify:user:1143893613:playlist:5dfbLgeesT8gixq1GTWBoU
+            {% elif is_state("input_select.spotify_playlist", "Chillige Bässe") %} spotify:user:spotify:playlist:37i9dQZF1DX37cXruBmbRS
+            {% elif is_state("input_select.spotify_playlist", "Chillstep") %} spotify:user:kent1337:playlist:6IjDl5eRczFdgZkKYXhuHZ
+            {% elif is_state("input_select.spotify_playlist", "Mixed Hip Hop") %} spotify:user:1143893613:playlist:4yuXhTpPFSTnRSYmAN8mse
+            {% elif is_state("input_select.spotify_playlist", "Mixed Electro") %} spotify:user:1143893613:playlist:1grR3x1MSPlyfS6VsaSzPn
+            {% elif is_state("input_select.spotify_playlist", "Mixed Rock") %} spotify:user:1143893613:playlist:2ECMyR5ovezJBGQDnL3w23
+            {% elif is_state("input_select.spotify_playlist", "Mixed Dub") %} spotify:user:1143893613:playlist:093q3iMD3lAA4h5oatDJPh
+            {% elif is_state("input_select.spotify_playlist", "Good Feeling") %} spotify:user:1143893613:playlist:0rHdZMqeSR4XVvPf6QmFM4
+            {% elif is_state("input_select.spotify_playlist", "Nightair") %} spotify:user:1143893613:playlist:2C4xXSYKJp0CYwIyWhODpD
+            {% elif is_state("input_select.spotify_playlist", "Streetbangers") %} spotify:user:1143893613:playlist:1JzR2qe9P3EOjgSyVNJ80R
+            {% endif %}
+
+automation:
+  - alias: 'Spotify Volume (Set)'
+    trigger:
+      platform: state
+      entity_id: input_number.spotify_volume
+    action:
+      service: media_player.volume_set
+      data_template:
+        entity_id: media_player.spotify
+        volume_level: '{{  states.input_number.spotify_volume.state | int / 100  }}'
+  
+  - alias: 'Spotify Volume (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_volume
+    action:
+      - delay:
+          seconds: 5
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.spotify_volume
+          value: '{{  states.sensor.spotify_volume.state | float | round(2) * 100  }}'
+  
+  - alias: 'Spotify Shuffle (Set)'
+    trigger:
+      platform: state
+      entity_id: input_boolean.spotify_shuffle
+    action:
+      service: media_player.shuffle_set
+      data_template:
+        entity_id: media_player.spotify
+        shuffle: >
+          {% if is_state('input_boolean.spotify_shuffle', 'off') %} 
+          false
+          {% elif is_state('input_boolean.spotify_shuffle', 'on') %}
+          true
+          {% endif %}
+  
+  - alias: 'Spotify Shuffle (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_shuffle
+    action:
+      - delay:
+          seconds: 5
+      - service_template: >
+          {% if states.sensor.spotify_shuffle.state == 'False' %}
+            input_boolean.turn_off
+          {% else %}
+            input_boolean.turn_on
+          {% endif %}
+        data:
+          entity_id: input_boolean.spotify_shuffle
+
+  - alias: 'Spotify Source (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_source
+    action:
+      service: input_select.select_option
+      entity_id: input_select.spotify_source
+      data_template:
+        option: '{{  states.sensor.spotify_source.state  }}'
