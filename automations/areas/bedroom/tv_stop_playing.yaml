@@ -3,6 +3,17 @@ trigger:
 - entity_id: media_player.bedroom_tv
   platform: state
   from: 'playing'
+  to: 'idle'
+  for:
+    seconds: 15
+- entity_id: media_player.bedroom_tv
+  platform: state
+  from: 'playing'
+  to: 'off'
+- entity_id: media_player.bedroom_tv
+  platform: state
+  from: 'playing'
+  to: 'paused'
 condition: []
 action:
 - event: on_bedroom_tv_playback_stop

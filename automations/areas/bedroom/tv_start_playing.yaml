@@ -3,7 +3,14 @@ trigger:
 - entity_id: media_player.bedroom_tv
   platform: state
   to: 'playing'
-condition: []
+condition: 
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: binary_sensor.bedroom_chromecast_on
+      state: 'on'
+    - condition: template
+      value_template: "{{ not is_state_attr('media_player.bedroom_tv', 'app_name', 'Spotify') }}"
 action:
 - event: on_bedroom_tv_playback_start
   event_data: {}

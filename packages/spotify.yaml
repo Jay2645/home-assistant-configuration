@@ -60,17 +60,10 @@ input_select:
   spotify_playlist:
     name: 'Playlist:'
     options:
-      - Made In Germany
-      - Murmel
-      - Chillige Bässe
-      - Chillstep
-      - Mixed Hip Hop
-      - Mixed Electro
-      - Mixed Rock
-      - Mixed Dub
-      - Good Feeling
-      - Nightair
-      - Streetbangers
+      - Favorite Songs
+      - Gaming
+      - Disney Songs
+      - Jungle Cruise
     icon: mdi:spotify
   spotify_source:
     name: 'Source:'
@@ -79,8 +72,7 @@ input_select:
       - "Home"
       - "Bedroom"
       - "Bedroom Speaker"
-      - "Pixel 2"
-    initial: "Home"
+    initial: "Bedroom Speaker"
     icon: mdi:speaker-wireless
 
 input_boolean:
@@ -92,33 +84,21 @@ script:
   spotify_music:
     alias: "Play selected spotify playlist"
     sequence:
-      - service: media_player.select_source
-        data_template: 
-          entity_id: media_player.spotify
-          source: >
+      - service: spotcast.start
+        data_template:
+          device_name: >
             {% if is_state("input_select.spotify_source", "Living Room") %} Living Room
             {% elif is_state("input_select.spotify_source", "Home") %} Home
             {% elif is_state("input_select.spotify_source", "Bedroom") %} Bedroom
             {% elif is_state("input_select.spotify_source", "Bedroom Speaker") %} Bedroom Speaker
-            {% elif is_state("input_select.spotify_source", "Pixel 2") %} Pixel 2
             {% endif %}
-      - service: media_player.play_media
-        data_template:
-          entity_id: media_player.spotify
-          media_content_type: playlist
-          media_content_id: >
-            {% if is_state("input_select.spotify_playlist", "Made In Germany") %} spotify:user:playlists.germany:playlist:5M7jfvXr6fiQ21U8jfe9aE
-            {% elif is_state("input_select.spotify_playlist", "Murmel") %} spotify:user:1143893613:playlist:5dfbLgeesT8gixq1GTWBoU
-            {% elif is_state("input_select.spotify_playlist", "Chillige Bässe") %} spotify:user:spotify:playlist:37i9dQZF1DX37cXruBmbRS
-            {% elif is_state("input_select.spotify_playlist", "Chillstep") %} spotify:user:kent1337:playlist:6IjDl5eRczFdgZkKYXhuHZ
-            {% elif is_state("input_select.spotify_playlist", "Mixed Hip Hop") %} spotify:user:1143893613:playlist:4yuXhTpPFSTnRSYmAN8mse
-            {% elif is_state("input_select.spotify_playlist", "Mixed Electro") %} spotify:user:1143893613:playlist:1grR3x1MSPlyfS6VsaSzPn
-            {% elif is_state("input_select.spotify_playlist", "Mixed Rock") %} spotify:user:1143893613:playlist:2ECMyR5ovezJBGQDnL3w23
-            {% elif is_state("input_select.spotify_playlist", "Mixed Dub") %} spotify:user:1143893613:playlist:093q3iMD3lAA4h5oatDJPh
-            {% elif is_state("input_select.spotify_playlist", "Good Feeling") %} spotify:user:1143893613:playlist:0rHdZMqeSR4XVvPf6QmFM4
-            {% elif is_state("input_select.spotify_playlist", "Nightair") %} spotify:user:1143893613:playlist:2C4xXSYKJp0CYwIyWhODpD
-            {% elif is_state("input_select.spotify_playlist", "Streetbangers") %} spotify:user:1143893613:playlist:1JzR2qe9P3EOjgSyVNJ80R
+          uri: >
+            {% if is_state("input_select.spotify_playlist", "Favorite Songs") %} spotify:user:1256645717:playlist:5yWiL8Q3sTd2rypdg70C6J
+            {% elif is_state("input_select.spotify_playlist", "Gaming") %} spotify:user:1256645717:playlist:3p0qWzqok9ESkdca3HdPCo
+            {% elif is_state("input_select.spotify_playlist", "Disney Songs") %} spotify:user:1256645717:playlist:0M3Q9bbJfhEANAiPAd4SPr
+            {% elif is_state("input_select.spotify_playlist", "Jungle Cruise") %} spotify:user:1256645717:playlist:6kIYduVM8zl9fXo6WMxTAk
             {% endif %}
+          random_song: '{{ states.input_boolean.spotify_shuffle.state }}'
 
 automation:
   - alias: 'Spotify Volume (Set)'
