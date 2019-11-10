@@ -6,7 +6,10 @@
 !.gitignore
 !hacs*
 !*.js*
+!*.html
+!*.disabled
 .ps4-games.json
 google_calendars.yaml
 known_devices.yaml
 secrets.yaml
+*/__pycache__/*

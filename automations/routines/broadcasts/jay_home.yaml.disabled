@@ -1,0 +1,10 @@
+id: '1557987317420'
+alias: Jay Home Broadcast
+trigger:
+- event_data: {}
+  event_type: jay_home
+  platform: event
+action:
+- data:
+    message: Jay is home!
+  service: script.speak
