@@ -1,4 +1,5 @@
 recorder:
+  db_url: !secret mysql_database_info
   purge_keep_days: 4
   exclude:
     domains:
@@ -7,13 +8,10 @@ recorder:
       - device_tracker
       - group
       - script
+      - input_boolean
+      - input_number
+      - input_select
       - zone
     entities:
       - sun.sun
       - sensor.date_time
-      - sensor.moon
-      - sensor.next_subway_to_union_station
-      - sensor.next_subway_to_work
-      - sensor.plex_recently_added
-      - switch.flux
-      - sensor.yr_symbol

@@ -1,2 +1,3 @@
 # Allow automatic updates
-#updater:
+updater:
+  include_used_components: true
