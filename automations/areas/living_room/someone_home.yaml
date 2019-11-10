@@ -1,0 +1,10 @@
+alias: Living Room Someone Home
+trigger:
+- event_data: {}
+  event_type: someone_home
+  platform: event
+condition: []
+action:
+- service: light.turn_on
+  data:
+    entity_id: light.living_room

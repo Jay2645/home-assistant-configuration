@@ -1,0 +1,12 @@
+alias: Bedroom Someone Home
+trigger:
+- event_data: {}
+  event_type: someone_home
+  platform: event
+condition: []
+action:
+- service: switch.turn_on
+  entity_id: switch.bedroom_fan
+- service: light.turn_on
+  data:
+    entity_id: light.bedroom

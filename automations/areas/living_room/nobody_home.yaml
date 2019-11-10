@@ -1,0 +1,10 @@
+alias: Living Room Nobody Home
+trigger:
+- event_data: {}
+  event_type: nobody_home
+  platform: event
+condition: []
+action:
+- service: light.turn_off
+  data:
+    entity_id: light.living_room
