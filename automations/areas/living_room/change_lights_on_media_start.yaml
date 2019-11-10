@@ -3,13 +3,14 @@ trigger:
 - event_data: {}
   event_type: on_living_room_tv_playback_start
   platform: event
-condition: 
-  condition: template
-  value_template: "{{ float(states.media_player.living_room_tv.attributes.media_duration) > 900 }}"
 action:
 - condition: state
   entity_id: light.living_room
   state: "on"
+  # Give HASS a chance to update with the latest data
+- delay: "00:00:05"
+- condition: template
+  value_template: "{{ float(states.media_player.living_room_tv.attributes.media_duration) > 900 }}"
 - service: hue.hue_activate_scene
   data:
     group_name: "Living Room"

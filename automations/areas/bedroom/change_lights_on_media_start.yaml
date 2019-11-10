@@ -3,10 +3,10 @@ trigger:
 - event_data: {}
   event_type: on_bedroom_tv_playback_start
   platform: event
-condition: 
-  condition: template
-  value_template: "{{ float(states.media_player.bedroom_tv.attributes.media_duration) > 900 }}"
 action:
+- delay: "00:00:05"
+- condition: template
+  value_template: "{{ float(states.media_player.bedroom_tv.attributes.media_duration) > 900 }}"
 - service: switch.turn_off
   entity_id: switch.bedroom_fan
 - condition: state
