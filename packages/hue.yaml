@@ -1,5 +1,6 @@
 hue:
- bridges:
-   - host: 192.168.86.21
-     allow_unreachable: true
-     allow_hue_groups: true
+  bridges:
+  - host: 192.168.86.21
+    filename: phue.conf
+    allow_unreachable: false
+    allow_hue_groups: true
