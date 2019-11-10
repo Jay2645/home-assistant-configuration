@@ -1,8 +1,12 @@
 *
 !*/
 !*.yaml
+!*.py
 !README.md
 !.gitignore
+!hacs*
+!*.js*
+.ps4-games.json
 google_calendars.yaml
 known_devices.yaml
 secrets.yaml
