@@ -1,0 +1,13 @@
+# Stop updating the Tesla once Jay gets to work or home
+
+alias: Stop Updating Tesla
+trigger:
+- event_data: {}
+  event_type: jay_home
+  platform: event
+- event_data: {}
+  event_type: jay_at_work
+  platform: event
+action:
+- service: switch.turn_off
+  entity_id: switch.euphrates_eevie_update_switch

@@ -1,13 +1,12 @@
-id: '1558072937765'
 alias: Fire Michelle Home Event
 trigger:
-- entity_id: person.michelle_kimsey_bailey
+- entity_id: person.michelle
   from: not_home
   platform: state
   to: home
 condition: 
 - condition: state
-  entity_id: input_boolean.server_initialized
+  entity_id: binary_sensor.server_up
   state: 'on'
 action:
 - event: michelle_home

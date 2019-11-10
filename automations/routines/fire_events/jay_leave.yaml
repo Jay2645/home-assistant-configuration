@@ -1,7 +1,7 @@
 id: '1558072582778'
 alias: Fire Jay Leave Event
 trigger:
-- entity_id: person.jay_stevens
+- entity_id: person.jay
   from: home
   platform: state
   to: not_home

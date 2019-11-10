@@ -1,0 +1,10 @@
+# Start updating the Tesla component once it's detected that Jay is in his car
+
+alias: Start Updating Tesla
+trigger:
+- event_data: {}
+  event_type: jay_in_car
+  platform: event
+action:
+- service: switch.turn_on
+  entity_id: switch.euphrates_eevie_update_switch
