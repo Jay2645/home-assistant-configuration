@@ -6,6 +6,7 @@
 !.gitignore
 !hacs*
 !*.js*
+!*.gz
 !*.html
 !*.disabled
 .ps4-games.json
