@@ -5,7 +5,7 @@ trigger:
   platform: event
 condition: 
   condition: template
-  value_template: "{{ (states.media_player.bedroom_tv.attributes.media_duration) > 600 }}"
+  value_template: "{{ float(states.media_player.bedroom_tv.attributes.media_duration) > 900 }}"
 action:
 - service: switch.turn_off
   entity_id: switch.bedroom_fan

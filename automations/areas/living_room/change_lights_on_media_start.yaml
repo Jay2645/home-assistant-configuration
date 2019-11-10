@@ -5,7 +5,7 @@ trigger:
   platform: event
 condition: 
   condition: template
-  value_template: "{{ (states.media_player.living_room_tv.attributes.media_duration) > 600 }}"
+  value_template: "{{ float(states.media_player.living_room_tv.attributes.media_duration) > 900 }}"
 action:
 - condition: state
   entity_id: light.living_room
