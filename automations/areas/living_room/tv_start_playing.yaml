@@ -3,9 +3,7 @@ trigger:
 - entity_id: media_player.living_room_tv
   platform: state
   to: 'playing'
-condition: 
-  condition: template
-  value_template: "{{ not is_state_attr('media_player.living_room_tv', 'app_name', 'Spotify') }}"
+condition: []
 action:
 - event: on_living_room_tv_playback_start
   event_data: {}

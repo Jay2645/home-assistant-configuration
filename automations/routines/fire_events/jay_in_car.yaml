@@ -1,14 +1,14 @@
 id: 'Jay in Car Event'
 alias: Fire Jay in Car Event
 trigger:
-- entity_id: person.jay_stevens
+- entity_id: person.jay
   from: home
   platform: state
   to: not_home
-condition:
-  condition: time
-  after: '16:00:00'
-  before: '02:00:00'
+- entity_id: person.jay
+  from: Jay Work
+  platform: state
+  to: not_home
 action:
 - event: jay_in_car
   event_data: {}
