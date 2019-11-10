@@ -1,0 +1,9 @@
+alias: Turn on lights in the morning
+trigger:
+- event_data: {}
+  event_type: woke_up_naturally
+  platform: event
+action:
+- data:
+    entity_id: light.bedroom
+  service: light.turn_on
