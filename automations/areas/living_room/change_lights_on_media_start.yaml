@@ -3,9 +3,6 @@ trigger:
 - event_data: {}
   event_type: on_living_room_tv_playback_start
   platform: event
-condition: 
-  condition: template
-  value_template: "{{ (states.media_player.living_room_tv.attributes.media_duration) > 600 }}"
 action:
 - condition: state
   entity_id: light.living_room
