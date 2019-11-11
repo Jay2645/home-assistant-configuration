@@ -1,11 +1,11 @@
-id: '1557988683778'
 alias: Fire Michelle Leave Event
 trigger:
-- entity_id: person.michelle
-  for: '15'
+- platform: state
+  entity_id: person.michelle
   from: home
-  platform: state
   to: not_home
+  for:
+    minutes: 15
 condition: []
 action:
 - event: michelle_leave

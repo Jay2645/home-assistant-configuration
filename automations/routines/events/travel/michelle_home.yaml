@@ -1,8 +1,8 @@
 alias: Fire Michelle Home Event
 trigger:
-- entity_id: person.michelle
+- platform: state
+  entity_id: person.michelle
   from: not_home
-  platform: state
   to: home
 condition: 
 - condition: state
