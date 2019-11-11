@@ -1,0 +1,6 @@
+platform: waze_travel_time
+name: Travel Time Jay Work to Home
+origin: zone.jay_work
+destination: zone.home
+excl_filter: "HOV"
+region: 'US'
