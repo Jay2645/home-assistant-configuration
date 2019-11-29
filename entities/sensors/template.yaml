@@ -4,6 +4,13 @@ sensors:
     value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Watch Chromecast')}}"
   bedroom_videogames_on: 
     value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Play Videogames')}}"
+  bedroom_chromecast_app: 
+    value_template: "{{ states.media_player.bedroom_tv.attributes.app_name }}"
+  bedroom_chromecast_content_type: 
+    value_template: "{{ states.media_player.bedroom_tv.attributes.media_content_type }}"
+  bedroom_chromecast_duration: 
+    value_template: "{{ states.media_player.bedroom_tv.attributes.media_duration|float }}"
+    unit_of_measurement: 'seconds'
   outside_temperature:
     value_template: "{{ states.weather.dark_sky.attributes.temperature|float }}"
     unit_of_measurement: 'degrees'
