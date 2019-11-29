@@ -1,4 +1,3 @@
-id: '1557987317420'
 alias: Jay Home Broadcast
 trigger:
 - event_data: {}
@@ -6,5 +5,5 @@ trigger:
   platform: event
 action:
 - data:
-    message: Jay is home!
-  service: script.speak
+    user: jay
+  service: rest_command.preset_arrived_home
