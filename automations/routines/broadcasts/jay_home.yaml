@@ -1,9 +1,0 @@
-alias: Jay Home Broadcast
-trigger:
-- event_data: {}
-  event_type: jay_home
-  platform: event
-action:
-- data:
-    user: jay
-  service: rest_command.preset_arrived_home

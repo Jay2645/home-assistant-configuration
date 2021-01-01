@@ -1,4 +1,10 @@
 tesla:
  username: !secret tesla_username
  password: !secret tesla_password
- scan_interval: 1800
+
+sensor:
+  - platform: derivative
+    source: sensor.euphrates_eevee_temperature_sensor_inside
+    round: 1 
+    unit_time: h
+    time_window: "00:30:00"

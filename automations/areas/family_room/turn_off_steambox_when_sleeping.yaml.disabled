@@ -1,0 +1,12 @@
+alias: Turn off Steambox when sleeping
+trigger:
+- event_data: {}
+  event_type: start_sleep
+  platform: event
+condition:
+  - condition: state
+    entity_id: binary_sensor.sleep_number_master_bedroom_jay_is_in_bed
+    state: 'on'
+action:
+- service: switch.turn_off
+  entity_id: switch.steam_box

@@ -1,0 +1,11 @@
+alias: Broadcast when dryer cycle ends
+trigger:
+- event_data: {}
+  event_type: on_dryer_cycle_complete
+  platform: event
+condition: []
+action:
+- service: notify.michelle
+  data:
+    message: 'Dryer has completed a cycle'
+  

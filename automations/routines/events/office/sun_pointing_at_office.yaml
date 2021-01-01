@@ -1,0 +1,22 @@
+alias: 'Fire sun pointing towards office event'
+trigger:
+  platform: numeric_state
+  entity_id: sun.sun
+  value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+  # Can be a positive or negative number
+  below: 67
+condition: 
+- condition: state
+  entity_id: binary_sensor.server_up
+  state: 'on'
+- condition: state
+  entity_id: sun.sun
+  state: 'above_horizon'
+action:
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Sun pointing at office
+    domain: automation
+- event: sun_pointing_at_office
+  event_data: {}

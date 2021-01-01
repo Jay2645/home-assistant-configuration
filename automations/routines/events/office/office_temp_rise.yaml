@@ -1,0 +1,13 @@
+alias: 'Fire office temperature rising event'
+trigger:
+  platform: numeric_state
+  entity_id: sensor.sensor_office_temperature_derivative
+  above: 1.5
+action:
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Office temperature rising
+    domain: automation
+- event: office_temperature_rising
+  event_data: {}

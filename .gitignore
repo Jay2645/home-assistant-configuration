@@ -9,8 +9,14 @@
 !*.gz
 !*.html
 !*.disabled
+.cloud/*
+.storage/*
+.ip_authenticated.yaml
 .ps4-games.json
 google_calendars.yaml
+o365_calendars.yaml
 known_devices.yaml
 secrets.yaml
+custom_components/*
+www/*
 */__pycache__/*

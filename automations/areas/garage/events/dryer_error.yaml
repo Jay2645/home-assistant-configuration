@@ -1,0 +1,9 @@
+alias: "Dryer Error"
+trigger:
+- entity_id: binary_sensor.dryer_error_state
+  platform: state
+  from: 'off'
+  to: 'on'
+action:
+- event: on_dryer_error
+  event_data: {}

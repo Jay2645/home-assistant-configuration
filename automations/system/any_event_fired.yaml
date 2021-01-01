@@ -1,0 +1,12 @@
+# alias: 'Any Event Was Fired'
+# trigger:
+# - event_data: {}
+#   event_type: '*'
+#   platform: event
+# action:
+# - service: logbook.log
+#   data_template:
+#     name: Event Fired
+#     message: '{{ trigger.event.event_type }}'
+#     domain: automation
+#     entity_id: automation.any_event_was_fired

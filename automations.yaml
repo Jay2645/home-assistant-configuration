@@ -1,0 +1,14 @@
+- id: '1593989549356'
+  alias: Log all events
+  description: ''
+  trigger:
+  - event_data: {}
+    event_type: anything
+    platform: event
+  condition: []
+  action:
+  - data:
+      domain: automation
+      message: was fired
+      name: Fire Event
+    service: logbook.log

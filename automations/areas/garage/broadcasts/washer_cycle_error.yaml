@@ -1,0 +1,11 @@
+alias: Broadcast when washer has error
+trigger:
+- event_data: {}
+  event_type: on_washer_error
+  platform: event
+condition: []
+action:
+- service: notify.michelle
+  data:
+    message: >
+      Washer has encounted an error: {{ state_attr('sensor.washer', 'error_message') }}

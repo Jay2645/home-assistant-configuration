@@ -12,3 +12,8 @@ action:
 - service: notify.notify
   data:
     message: "Webhook event fired!"
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Webhook event received
+    domain: automation

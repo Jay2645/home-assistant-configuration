@@ -1,0 +1,14 @@
+alias: 'Fire Jay Woke Up Event'
+trigger:
+- entity_id: binary_sensor.jay_asleep
+  from: 'on'
+  platform: state
+  to: 'off'
+action:
+- event: jay_woke_up
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Jay woke up
+    domain: automation

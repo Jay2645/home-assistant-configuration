@@ -1,6 +1,22 @@
 notify:
- - platform: html5
-   name: push_hass
-   vapid_pub_key: BKSMp9OUhOjvSQhwJTAhzsLkbmUsH0i4PO_yjutBUmX1uCOcJDhP2SfaigSJYeSVeCSjVxEkij3dUnBRPvDfIxM
-   vapid_prv_key: !secret vapid_prv_key
-   vapid_email: !secret jay_email
+  - platform: html5
+    name: push_hass
+    vapid_pub_key: BKSMp9OUhOjvSQhwJTAhzsLkbmUsH0i4PO_yjutBUmX1uCOcJDhP2SfaigSJYeSVeCSjVxEkij3dUnBRPvDfIxM
+    vapid_prv_key: !secret vapid_prv_key
+    vapid_email: !secret jay_email
+  - platform: nfandroidtv
+    name: bedroom_tv
+    host: 192.168.86.61
+  - name: michelle
+    platform: group
+    services:
+      - service: guest_bedroom
+      - service: master_bedroom
+#      - service: bedroom_tv
+      - service: mobile_app_pixel_3_xl
+  - name: jay
+    platform: group
+    services:
+      - service: office
+#      - service: bedroom_tv
+      - service: mobile_app_pixel_4

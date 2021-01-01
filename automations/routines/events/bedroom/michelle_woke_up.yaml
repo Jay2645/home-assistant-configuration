@@ -1,0 +1,14 @@
+alias: 'Fire Michelle Woke Up Event'
+trigger:
+- entity_id: binary_sensor.michelle_asleep
+  from: 'on'
+  platform: state
+  to: 'off'
+action:
+- event: michelle_woke_up
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Michelle woke up
+    domain: automation

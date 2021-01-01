@@ -1,6 +1,14 @@
 switch:
-  - platform: flux
-    lights:
-      - light.office_light
-#  platform: hadockermon
-#  host: localhost
+  - platform: template
+    switches:
+      bedroom_tv:
+        friendly_name: Bedroom TV
+        value_template: "{{ not is_state('media_player.michelle_s_tv', 'Unavailable') and not is_state('media_player.michelle_s_tv', 'off') }}"
+        turn_on:
+          service: media_player.turn_on
+          data:
+            entity_id: media_player.michelle_s_tv
+        turn_off:
+          service: media_player.turn_off
+          data:
+            entity_id: media_player.michelle_s_tv

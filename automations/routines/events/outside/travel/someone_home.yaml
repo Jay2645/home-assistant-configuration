@@ -1,0 +1,17 @@
+alias: Fire Someone Home Event
+trigger:
+- entity_id: binary_sensor.cutie_home
+  platform: state
+  to: 'on'
+condition: 
+- condition: state
+  entity_id: binary_sensor.server_up
+  state: 'on'
+action:
+- event: someone_home
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Someone Home
+    domain: automation

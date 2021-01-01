@@ -1,0 +1,5 @@
+platform: tod
+name: Late Afternoon
+after: '14:30'
+before: sunset
+before_offset: '-1:00'

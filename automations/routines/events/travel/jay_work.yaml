@@ -1,9 +1,0 @@
-alias: Fire Jay At Work Event
-trigger:
-- entity_id: person.jay
-  from: not_home
-  platform: state
-  to: Jay Work
-action:
-- event: jay_at_work
-  event_data: {}

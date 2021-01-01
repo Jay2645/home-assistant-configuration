@@ -9,4 +9,4 @@ action:
   entity_id: switch.bedroom_fan
 - service: light.turn_on
   data:
-    entity_id: light.bedroom_2
+    entity_id: light.bedroom

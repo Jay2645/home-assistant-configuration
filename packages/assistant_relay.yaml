@@ -1,0 +1,73 @@
+rest_command:
+  assistant_broadcast:
+    url: http://127.0.0.1:3000/assistant
+    method: POST
+    content_type: 'application/json'
+    payload: '{"command":"{% if target|length > 0 %}to {{ target }}{% endif %} {{ command }}", "user":"Server", "broadcast":true}'
+    
+  assistant_converse:
+    url: http://127.0.0.1:3000/assistant
+    method: POST
+    content_type: 'application/json'
+    payload: '{"command":"{{ command }}", "user":"Server", "converse":true}'
+
+  assistant_relay:
+    url: http://127.0.0.1:3000/assistant
+    method: POST
+    content_type: 'application/json'
+    payload: '{"command":"{{ command }}", "user":"Server"}'
+
+notify:
+  - name: broadcast
+    platform: rest
+    resource: http://127.0.0.1:3000/assistant
+    method: POST
+    content_type: 'application/json'
+    data:
+      user: "Server"
+      broadcast: true
+    data_template:
+      command: >
+        {% if target|length > 0 %}to {{ target[0] }}{% endif %} {{ message }}
+  - name: guest_bedroom
+    platform: group
+    services:
+      - service: broadcast
+        data:
+          target: "guest bedroom"
+  - name: guest_bathroom
+    platform: group
+    services:
+      - service: broadcast
+        data:
+          target: "guest bathroom"
+  - name: kitchen
+    platform: group
+    services:
+      - service: broadcast
+        data:
+          target: "kitchen"
+  - name: living_room
+    platform: group
+    services:
+      - service: broadcast
+        data:
+          target: "living room"
+  - name: master_bathroom
+    platform: group
+    services:
+      - service: broadcast
+        data:
+          target: "master bathroom"
+  - name: master_bedroom
+    platform: group
+    services:
+      - service: broadcast
+        data:
+          target: "master bedroom"
+  - name: office
+    platform: group
+    services:
+      - service: broadcast
+        data:
+          target: "office"

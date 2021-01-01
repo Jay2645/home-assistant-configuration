@@ -1,0 +1,10 @@
+alias: Lower blinds when light enters office
+trigger:
+  platform: time
+  at: "08:00:00"
+condition: []
+action:
+- service: cover.close_cover
+  entity_id: cover.office_blinds
+- service: light.turn_on
+  entity_id: light.office_lights

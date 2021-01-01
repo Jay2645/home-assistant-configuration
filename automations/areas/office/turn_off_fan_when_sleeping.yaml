@@ -1,0 +1,9 @@
+alias: Turn off Fan when sleeping
+trigger:
+- event_data: {}
+  event_type: start_sleep
+  platform: event
+condition: []
+action:
+- service: switch.turn_off
+  entity_id: switch.office_fan

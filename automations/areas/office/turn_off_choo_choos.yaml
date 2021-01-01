@@ -1,0 +1,13 @@
+alias: Turn off choo choos
+trigger:
+  platform: state
+  entity_id: input_boolean.choo_choos
+  to: 'off'
+condition: []
+action:
+- service: remote.turn_on
+  entity_id: remote.harmony_hub
+  data:
+    activity: "PowerOff"
+- service: switch.turn_off
+  entity_id: switch.choo_choos

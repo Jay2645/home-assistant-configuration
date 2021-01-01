@@ -9,3 +9,8 @@ action:
 - data_template:
     message: '{{ trigger.event.data.message }}'
   service_template: '{{ trigger.event.data.service }}'
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Webhook service received
+    domain: automation

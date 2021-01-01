@@ -1,0 +1,127 @@
+input_boolean:
+  choo_choos:
+    name: Choo Choos
+    icon: mdi:train-variant
+    
+# Helix
+binary_sensor:
+  - platform: template
+    sensors:
+      choo_choo_inner_west_helix:
+        friendly_name: "West Helix (Inner)"
+        device_class: occupancy 
+        value_template: >-
+          {{ 
+            is_state('binary_sensor.choo_choo_block_wh1', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh3', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh5', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh7', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh9', 'on') 
+          }}
+      choo_choo_outer_west_helix:
+        friendly_name: "West Helix (Outer)"
+        device_class: occupancy
+        value_template: >-
+          {{ 
+            is_state('binary_sensor.choo_choo_block_wh2', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh4', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh6', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh8', 'on') or
+            is_state('binary_sensor.choo_choo_block_wh10', 'on')
+          }}
+  - platform: mqtt
+    name: "Choo Choo Block WH1"
+    state_topic: "trains/track/sensor/west_helix_block_1"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH2"
+    state_topic: "trains/track/sensor/west_helix_block_2"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH3"
+    state_topic: "trains/track/sensor/west_helix_block_3"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH4"
+    state_topic: "trains/track/sensor/west_helix_block_4"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH5"
+    state_topic: "trains/track/sensor/west_helix_block_5"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH6"
+    state_topic: "trains/track/sensor/west_helix_block_6"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH7"
+    state_topic: "trains/track/sensor/west_helix_block_7"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH8"
+    state_topic: "trains/track/sensor/west_helix_block_8"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH9"
+    state_topic: "trains/track/sensor/west_helix_block_9"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+  - platform: mqtt
+    name: "Choo Choo Block WH10"
+    state_topic: "trains/track/sensor/west_helix_block_10"
+    payload_on: "ACTIVE"
+    payload_off: "INACTIVE"
+    device_class: occupancy
+
+automation:
+  - alias: 'Inner Helix Active'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: binary_sensor.choo_choo_inner_west_helix
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.choo_choo_inner_west_helix
+        to: 'off'
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "trains/track/sensor/west_helix_inner"
+          payload_template: "{{ 'INACTIVE' if is_state('binary_sensor.choo_choo_inner_west_helix', 'off') else 'ACTIVE' }}"
+          qos: 0
+          retain: true
+  - alias: 'Outer Helix Active'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: binary_sensor.choo_choo_outer_west_helix
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.choo_choo_outer_west_helix
+        to: 'off'
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "trains/track/sensor/west_helix_outer"
+          payload_template: "{{ 'INACTIVE' if is_state('binary_sensor.choo_choo_outer_west_helix', 'off') else 'ACTIVE' }}"
+          qos: 0
+          retain: true

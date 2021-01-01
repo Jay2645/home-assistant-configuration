@@ -1,0 +1,14 @@
+alias: 'Michelle in bed event'
+trigger:
+- entity_id: binary_sensor.sleep_number_master_bedroom_michelle_is_in_bed
+  from: 'off'
+  platform: state
+  to: 'on'
+action:
+- event: michelle_in_bed
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Michelle is in bed
+    domain: automation

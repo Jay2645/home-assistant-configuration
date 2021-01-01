@@ -1,0 +1,97 @@
+platform: 'bayesian'
+name: Michelle Asleep
+prior: 0.25
+probability_threshold: 0.75
+observations:
+  - platform: 'state'
+    entity_id: 'binary_sensor.sleep_number_master_bedroom_michelle_is_in_bed'
+    prob_given_true: 0.35
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.sleep_number_master_bedroom_michelle_is_in_bed'
+    prob_given_true: 0.1
+    to_state: 'off'
+  - platform: 'state'
+    entity_id: 'binary_sensor.sleep_number_master_bedroom_jay_is_in_bed'
+    prob_given_true: 0.6
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.jay_asleep'
+    prob_given_true: 0.6
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.white_noise_playing'
+    prob_given_true: 0.9
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.white_noise_playing'
+    prob_given_true: 0.05
+    to_state: 'off'
+  - platform: 'state'
+    entity_id: 'light.main_bedroom_lights'
+    prob_given_true: 0.1
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'light.main_bedroom_lights'
+    prob_given_true: 0.25
+    to_state: 'off'
+  - platform: 'state'
+    entity_id: 'sun.sun'
+    prob_given_true: 0.7
+    to_state: 'below_horizon'
+  - platform: 'state'
+    entity_id: 'binary_sensor.early_morning'
+    prob_given_true: 0.9
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.morning'
+    prob_given_true: 0.8
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.afternoon'
+    prob_given_true: 0.65
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.late_afternoon'
+    prob_given_true: 0.15
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.evening'
+    prob_given_true: 0.45
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.early_night'
+    prob_given_true: 0.55
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.midnight'
+    prob_given_true: 0.65
+    to_state: 'on'
+  - platform: 'state'
+    entity_id: 'binary_sensor.late_night'
+    prob_given_true: 0.75
+    to_state: 'on'
+  - platform: 'numeric_state'
+    entity_id: 'sensor.minutes_since_michelle_entered_bed'
+    prob_given_true: 0.1
+    below: 30
+  - platform: 'numeric_state'
+    entity_id: 'sensor.minutes_since_michelle_entered_bed'
+    prob_given_true: 0.15
+    below: 75
+  - platform: 'numeric_state'
+    entity_id: 'sensor.minutes_since_michelle_entered_bed'
+    prob_given_true: 0.4
+    above: 90
+  - platform: 'numeric_state'
+    entity_id: 'sensor.minutes_since_michelle_entered_bed'
+    prob_given_true: 0.6
+    above: 120
+  - platform: 'numeric_state'
+    entity_id: 'sensor.minutes_since_michelle_entered_bed'
+    prob_given_true: 0.8
+    above: 240
+  - platform: 'numeric_state'
+    entity_id: 'sensor.minutes_since_michelle_entered_bed'
+    prob_given_true: 0.9
+    above: 300

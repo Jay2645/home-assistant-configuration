@@ -1,0 +1,9 @@
+alias: "Washer Error"
+trigger:
+- entity_id: binary_sensor.washer_error_state
+  platform: state
+  from: 'off'
+  to: 'on'
+action:
+- event: on_washer_error
+  event_data: {}

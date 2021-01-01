@@ -1,0 +1,13 @@
+alias: Fire Nobody Home Event
+trigger:
+- entity_id: binary_sensor.cutie_home
+  platform: state
+  to: 'off'
+action:
+- event: nobody_home
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Nobody Home
+    domain: automation

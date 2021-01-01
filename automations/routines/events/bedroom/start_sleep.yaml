@@ -1,0 +1,14 @@
+alias: 'Fire Start Sleep Event'
+trigger:
+- entity_id: binary_sensor.cuties_asleep
+  from: 'off'
+  platform: state
+  to: 'on'
+action:
+- event: start_sleep
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Bedtime
+    domain: automation

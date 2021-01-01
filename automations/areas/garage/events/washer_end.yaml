@@ -1,0 +1,9 @@
+alias: "Washer End"
+trigger:
+- entity_id: binary_sensor.washer_wash_completed
+  platform: state
+  from: 'off'
+  to: 'on'
+action:
+- event: on_washer_cycle_complete
+  event_data: {}

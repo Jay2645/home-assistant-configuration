@@ -1,0 +1,8 @@
+cover:
+  - platform: group
+    name: Office Blinds
+    entities:
+      - cover.office_blind_1
+      - cover.office_blind_2
+      - cover.office_blind_3
+      - cover.office_blind_4

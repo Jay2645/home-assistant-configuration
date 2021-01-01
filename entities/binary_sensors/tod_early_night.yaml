@@ -1,0 +1,4 @@
+platform: tod
+name: Early Night
+after: sunset
+before: '1:00'

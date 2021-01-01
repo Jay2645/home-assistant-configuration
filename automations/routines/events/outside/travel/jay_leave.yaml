@@ -1,0 +1,16 @@
+id: '1558072582778'
+alias: Fire Jay Leave Event
+trigger:
+- entity_id: person.jay
+  from: home
+  platform: state
+  to: not_home
+condition: []
+action:
+- event: jay_leave
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Jay Leave
+    domain: automation

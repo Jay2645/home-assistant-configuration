@@ -1,0 +1,18 @@
+alias: Fire Jay Home Event
+trigger:
+- entity_id: person.jay
+  from: not_home
+  platform: state
+  to: home
+condition: 
+- condition: state
+  entity_id: binary_sensor.server_up
+  state: 'on'
+action:
+- event: jay_home
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Jay Home
+    domain: automation

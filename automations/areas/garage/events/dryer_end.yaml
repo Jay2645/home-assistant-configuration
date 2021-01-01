@@ -1,0 +1,9 @@
+alias: "Dryer End"
+trigger:
+- entity_id: binary_sensor.dryer_dry_completed
+  platform: state
+  from: 'off'
+  to: 'on'
+action:
+- event: on_dryer_cycle_complete
+  event_data: {}

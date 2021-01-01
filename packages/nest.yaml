@@ -1,0 +1,38 @@
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  project_id: !secret nest_project_id
+  subscriber_id: !secret nest_subscriber_id
+
+badnest:
+  issue_token: !secret badnest_issue_token
+  cookie: !secret badnest_cookie
+  region: us
+  camera_only_important: False   # (Optional)
+  camera_event_minutes: 120 # minutes to get camera events for (optional)
+  camera_event_timeout: 1  # minutes for detector to hold a state
+
+climate:
+  - platform: badnest
+    scan_interval: 1
+
+camera:
+  - platform: badnest
+
+sensor:
+  - platform: badnest
+  - platform: derivative
+    source: sensor.bedroom_temperature
+    round: 1 
+    unit_time: h
+    time_window: "01:00:00"
+  - platform: derivative
+    source: sensor.office_temperature
+    round: 1 
+    unit_time: h
+    time_window: "01:00:00"
+  - platform: derivative
+    source: sensor.family_room_temperature
+    round: 1 
+    unit_time: h
+    time_window: "01:00:00"

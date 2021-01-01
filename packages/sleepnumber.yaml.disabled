@@ -1,0 +1,7 @@
+#sleepiq:
+#  username: !secret sleep_number_username
+#  password: !secret sleep_number_password
+
+sleep_number:
+  username: !secret sleep_number_username
+  password: !secret sleep_number_password

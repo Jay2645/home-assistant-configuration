@@ -9,8 +9,11 @@ elevation: 8
 unit_system: imperial
 # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 time_zone: America/Los_Angeles
+external_url: !secret home_assistant_url
+internal_url: !secret home_assistant_url
+
 # Customization file
-customize: !include customizations/customize.yaml
+customize: !include customize.yaml
 
 # Load packages
 packages: !include_dir_named packages

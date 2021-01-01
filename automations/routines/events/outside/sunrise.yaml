@@ -1,0 +1,13 @@
+alias: 'Fire sunrise event'
+trigger:
+    platform: sun
+    # Possible values: sunset, sunrise
+    event: sunrise
+action:
+- event: sunrise
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Sunrise
+    domain: automation

@@ -1,0 +1,10 @@
+alias: Broadcast when washer cycle ends
+trigger:
+- event_data: {}
+  event_type: on_washer_cycle_complete
+  platform: event
+condition: []
+action:
+- service: notify.michelle
+  message:
+    command: 'Washer has completed a cycle'

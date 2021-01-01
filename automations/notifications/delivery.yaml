@@ -1,0 +1,12 @@
+alias: Order out for delivery
+trigger:
+  - platform: template
+    value_template: "{% if 'approaching with your order' in states('sensor.pixel_4_last_notification') %}true{% endif %}"
+  - platform: template
+    value_template: "{% if 'is arriving soon' in states('sensor.pixel_4_last_notification') %}true{% endif %}"
+  - platform: template
+    value_template: "{% if 'Your order is out for delivery' in states('sensor.pixel_4_last_notification') %}true{% endif %}"
+action:
+- service: notify.jay
+  data:
+    message: "Jay's order is out for delivery!"

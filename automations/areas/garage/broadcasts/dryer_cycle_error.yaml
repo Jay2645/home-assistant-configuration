@@ -1,0 +1,11 @@
+alias: Broadcast when dryer has error
+trigger:
+- event_data: {}
+  event_type: on_dryer_error
+  platform: event
+condition: []
+action:
+- service: notify.michelle
+  data:
+    message: >
+      Dryer has encounted an error: {{ state_attr('sensor.dryer', 'error_message') }}

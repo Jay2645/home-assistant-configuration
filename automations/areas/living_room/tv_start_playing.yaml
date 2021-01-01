@@ -1,9 +1,0 @@
-alias: "Living Room Start Playing"
-trigger:
-- entity_id: media_player.living_room_tv
-  platform: state
-  to: 'playing'
-condition: []
-action:
-- event: on_living_room_tv_playback_start
-  event_data: {}

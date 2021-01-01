@@ -1,0 +1,19 @@
+id: 'Jay in Car Event'
+alias: Fire Jay in Car Event
+trigger:
+- entity_id: person.jay
+  from: home
+  platform: state
+  to: not_home
+- entity_id: person.jay
+  from: Jay Work
+  platform: state
+  to: not_home
+action:
+- event: jay_in_car
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Jay in Car
+    domain: automation

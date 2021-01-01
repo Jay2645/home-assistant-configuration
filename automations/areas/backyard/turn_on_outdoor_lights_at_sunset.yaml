@@ -1,0 +1,11 @@
+alias: Turn on outdoor lights at sunset
+trigger:
+- event_data: {}
+  event_type: sunset
+  platform: event
+condition: []
+action:
+- service: switch.turn_on
+  entity_id: switch.outdoor_lights
+- service: switch.turn_on
+  entity_id: switch.backyard_lights

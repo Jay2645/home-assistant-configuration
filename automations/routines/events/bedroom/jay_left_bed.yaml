@@ -1,0 +1,14 @@
+alias: 'Jay left bed event'
+trigger:
+- entity_id: binary_sensor.sleep_number_master_bedroom_jay_is_in_bed
+  from: 'on'
+  platform: state
+  to: 'off'
+action:
+- event: jay_left_bed
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Jay out of bed
+    domain: automation

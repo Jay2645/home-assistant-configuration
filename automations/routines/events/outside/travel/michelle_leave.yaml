@@ -1,0 +1,17 @@
+alias: Fire Michelle Leave Event
+trigger:
+- platform: state
+  entity_id: person.michelle
+  from: home
+  to: not_home
+  for:
+    minutes: 15
+condition: []
+action:
+- event: michelle_leave
+  event_data: {}
+- service: logbook.log
+  data:
+    name: Event Fired
+    message: Michelle Leave
+    domain: automation

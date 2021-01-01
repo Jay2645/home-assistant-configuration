@@ -18,3 +18,7 @@ action:
     bug_michelle: False
     push_notification: True
   service: python_script.speak
+- service: logbook.log
+  data:
+    name: Server Online
+    domain: automation
