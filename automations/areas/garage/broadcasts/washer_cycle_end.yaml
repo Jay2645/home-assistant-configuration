@@ -5,6 +5,6 @@ trigger:
   platform: event
 condition: []
 action:
-- service: notify.michelle
-  message:
+- service: rest_command.assistant_broadcast
+  data:
     command: 'Washer has completed a cycle'

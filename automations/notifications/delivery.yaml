@@ -7,6 +7,6 @@ trigger:
   - platform: template
     value_template: "{% if 'Your order is out for delivery' in states('sensor.pixel_4_last_notification') %}true{% endif %}"
 action:
-- service: notify.jay
+- service: rest_command.assistant_broadcast
   data:
-    message: "Jay's order is out for delivery!"
+    command: "Jay's order is out for delivery!"

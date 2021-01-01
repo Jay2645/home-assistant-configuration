@@ -5,7 +5,7 @@ trigger:
   platform: event
 condition: []
 action:
-- service: notify.michelle
+- service: rest_command.assistant_broadcast
   data:
-    message: >
+    command: >
       Washer has encounted an error: {{ state_attr('sensor.washer', 'error_message') }}
