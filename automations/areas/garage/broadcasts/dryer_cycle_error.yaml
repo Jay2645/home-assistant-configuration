@@ -5,7 +5,7 @@ trigger:
   platform: event
 condition: []
 action:
-- service: rest_command.assistant_broadcast
+- service: notify.michelle
   data:
-    command: >
+    message: >
       Dryer has encounted an error: {{ state_attr('sensor.dryer', 'error_message') }}

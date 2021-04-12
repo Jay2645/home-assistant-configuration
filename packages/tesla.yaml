@@ -1,6 +1,6 @@
-tesla:
- username: !secret tesla_username
- password: !secret tesla_password
+#tesla:
+# username: !secret tesla_username
+# password: !secret tesla_password
 
 sensor:
   - platform: derivative

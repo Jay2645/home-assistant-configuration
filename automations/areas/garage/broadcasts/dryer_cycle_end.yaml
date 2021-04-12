@@ -5,7 +5,7 @@ trigger:
   platform: event
 condition: []
 action:
-- service: rest_command.assistant_broadcast
+- service: notify.michelle
   data:
-    command: 'Dryer has completed a cycle'
+    message: 'Dryer has completed a cycle'
   
