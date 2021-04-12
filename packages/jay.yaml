@@ -1,0 +1,168 @@
+binary_sensor:
+  - platform: 'bayesian'
+    name: Jay Asleep
+    prior: 0.25
+    probability_threshold: 0.85
+    observations:
+      - platform: 'state'
+        entity_id: 'binary_sensor.sleep_number_master_bedroom_jay_is_in_bed'
+        prob_given_true: 0.75
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.sleep_number_master_bedroom_michelle_is_in_bed'
+        prob_given_true: 0.7
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.michelle_asleep'
+        prob_given_true: 0.65
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.michelle_asleep'
+        prob_given_true: 0.3
+        to_state: 'off'
+      - platform: 'state'
+        entity_id: 'binary_sensor.white_noise_playing'
+        prob_given_true: 0.85
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.white_noise_playing'
+        prob_given_true: 0.3
+        to_state: 'off'
+      - platform: 'state'
+        entity_id: 'sensor.pixel_4_battery_state'
+        prob_given_true: 0.3
+        to_state: 'discharging'
+      - platform: 'state'
+        entity_id: 'sensor.pixel_4_battery_state'
+        prob_given_true: 0.65
+        to_state: 'charging'
+      - platform: 'state'
+        entity_id: 'light.main_bedroom_lights'
+        prob_given_true: 0.1
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'light.main_bedroom_lights'
+        prob_given_true: 0.35
+        to_state: 'off'
+      - platform: 'state'
+        entity_id: 'person.jay_stevens'
+        prob_given_true: 0.05
+        to_state: 'not_home'
+      - platform: 'state'
+        entity_id: calendar.calendar
+        prob_given_true: 0.05
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'sun.sun'
+        prob_given_true: 0.7
+        to_state: 'below_horizon'
+      - platform: 'state'
+        entity_id: 'binary_sensor.early_morning'
+        prob_given_true: 0.8
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.morning'
+        prob_given_true: 0.7
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.afternoon'
+        prob_given_true: 0.5
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.late_afternoon'
+        prob_given_true: 0.15
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.evening'
+        prob_given_true: 0.45
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.early_night'
+        prob_given_true: 0.55
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.midnight'
+        prob_given_true: 0.65
+        to_state: 'on'
+      - platform: 'state'
+        entity_id: 'binary_sensor.late_night'
+        prob_given_true: 0.75
+        to_state: 'on'
+      - platform: 'numeric_state'
+        entity_id: 'sensor.minutes_since_jay_entered_bed'
+        prob_given_true: 0.1
+        below: 30
+      - platform: 'numeric_state'
+        entity_id: 'sensor.minutes_since_jay_entered_bed'
+        prob_given_true: 0.3
+        below: 60
+      - platform: 'numeric_state'
+        entity_id: 'sensor.minutes_since_jay_entered_bed'
+        prob_given_true: 0.5
+        above: 90
+      - platform: 'numeric_state'
+        entity_id: 'sensor.minutes_since_jay_entered_bed'
+        prob_given_true: 0.75
+        above: 120
+      - platform: 'numeric_state'
+        entity_id: 'sensor.minutes_since_jay_entered_bed'
+        prob_given_true: 0.95
+        above: 240
+
+sensor:
+  - platform: template
+    sensors:
+      jay_game:
+        value_template: "{{ state_attr('sensor.discord_englishmobster_2190', 'game') }}"
+        friendly_name: "Jay Playing"
+        icon_template: 'mdi:gamepad-variant'
+      jay_streaming:
+        value_template: "{{ state_attr('sensor.discord_englishmobster_2190', 'streaming') }}"
+        friendly_name: "Jay Streaming"
+        icon_template: 'mdi:twitch'
+        attribute_templates:
+          jay_streaming_url: "{{ state_attr('sensor.discord_englishmobster_2190', 'streaming_url') }}"
+          jay_streaming_details: "{{ state_attr('sensor.discord_englishmobster_2190', 'streaming_details') }}"
+      jay_listening:
+        value_template: "{{ state_attr('sensor.discord_englishmobster_2190', 'listening') }}"
+        friendly_name: "Jay Listening"
+        entity_picture_template: "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_album_cover_url') }}"
+        icon_template: 'mdi:playlist-music'
+        attribute_templates:
+          jay_listening_url: "{{ state_attr('sensor.discord_englishmobster_2190', 'listening_url') }}"
+          jay_listening_details: "{{ state_attr('sensor.discord_englishmobster_2190', 'listening_details') }}"
+          jay_spotify_artist: "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_artist') }}"
+          jay_spotify_title: "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_title') }}"
+          jay_spotify_album: "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_album') }}"
+          jay_spotify_track_id: "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_track_id') }}"
+          jay_spotify_duration: "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_duration') }}"
+          jay_spotify_start:  "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_start') }}"
+          jay_spotify_end: "{{ state_attr('sensor.discord_englishmobster_2190', 'spotify_end') }}"
+      jay_watching:
+        value_template: "{{ state_attr('sensor.discord_englishmobster_2190', 'watching') }}"
+        friendly_name: "Jay Watching"
+        icon_template: 'mdi:television-classic'
+        attribute_templates:
+          jay_watching_url: "{{ state_attr('sensor.discord_englishmobster_2190', 'watching_url') }}"
+          jay_watching_details: "{{ state_attr('sensor.discord_englishmobster_2190', 'watching_details') }}"
+      jay_custom_status:
+        friendly_name: "Jay Discord Status"
+        value_template: "{{ state_attr('sensor.discord_englishmobster_2190', 'custom_status') }}"
+        icon_template: 'mdi:discord'
+  - platform: youtube
+    channel_id: UC2gB7YCgfHIskI3HsY1teDw
+  - platform: youtube
+    channel_id: UCBODyKF0JMbUd6D9Bklyzbw
+  - platform: youtube
+    channel_id: UCL7DDQWP6x7wy0O6L5ZIgxg
+  - platform: youtube
+    channel_id: UCVo63lbKHjC04KqYhwSZ_Pg
+  - platform: youtube
+    channel_id: UCpIafFPGutTAKOBHMtGen7g
+  - platform: youtube
+    channel_id: UCmOy2-vrvwDh6O1bTUB5m_g
+  - platform: discord_game
+    token: !secret discord_bot_token
+    image_format: png
+    members:
+      - EnglishMobster#2190

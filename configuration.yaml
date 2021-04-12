@@ -1,2 +1,19 @@
-# Set up HASS
-homeassistant: !include hass.yaml
+homeassistant:
+  name: Home Sweet Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret lat
+  longitude: !secret long
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 170
+  unit_system: imperial
+  time_zone: America/Los_Angeles
+  external_url: !secret home_assistant_url
+  internal_url: !secret home_assistant_url
+
+  # Customization file
+  customize: !include customize.yaml
+
+  # Load packages
+  packages: !include_dir_named packages
+
+  

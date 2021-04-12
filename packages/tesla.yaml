@@ -1,8 +1,16 @@
-#tesla:
-# username: !secret tesla_username
-# password: !secret tesla_password
+binary_sensor:
+  - platform: template
+    sensors:
+      tesla_initialized:
+        value_template: '{{ float(states.sensor.tesla_model_3_mileage_sensor.state) > 0 }}'
 
 sensor:
+  - platform: template
+    sensors:
+      euphrates_eevee_shift_state:
+        value_template: "{{ state_attr('binary_sensor.euphrates_eevee_parking_brake_sensor', 'shift_state') }}"
+        friendly_name: "Euphrated Eevee Shift State"
+        icon_template: 'mdi:car-sports'
   - platform: derivative
     source: sensor.euphrates_eevee_temperature_sensor_inside
     round: 1 

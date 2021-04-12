@@ -1,4 +1,0 @@
-platform: tod
-name: Day
-after: sunrise
-before: sunset

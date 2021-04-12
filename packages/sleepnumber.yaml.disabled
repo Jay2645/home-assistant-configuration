@@ -5,3 +5,90 @@
 sleep_number:
   username: !secret sleep_number_username
   password: !secret sleep_number_password
+
+sensor:
+  - platform: template
+    sensors:
+      last_time_jay_entered_bed:
+        value_template: "{{ as_timestamp(state_attr('automation.jay_in_bed_event', 'last_triggered')) | timestamp_local }}"
+        friendly_name: "Last Time Jay Entered Bed"
+        icon_template: 'mdi:bed'
+        device_class: timestamp
+      last_time_jay_left_bed:
+        value_template: "{{ as_timestamp(state_attr('automation.jay_left_bed_event', 'last_triggered')) | timestamp_local }}"
+        friendly_name: "Last Time Jay Left Bed"
+        icon_template: 'mdi:bed'
+        device_class: timestamp
+      last_time_michelle_entered_bed:
+        value_template: "{{ as_timestamp(state_attr('automation.michelle_in_bed_event', 'last_triggered')) | timestamp_local }}"
+        friendly_name: "Last Time Michelle Entered Bed"
+        device_class: timestamp
+      last_time_michelle_left_bed:
+        value_template: "{{ as_timestamp(state_attr('automation.michelle_left_bed_event', 'last_triggered')) | timestamp_local }}"
+        friendly_name: "Last Time Michelle Left Bed"
+        icon_template: 'mdi:bed'
+        device_class: timestamp
+      seconds_since_jay_entered_bed:
+        value_template: >-
+          {% if is_state('binary_sensor.sleep_number_master_bedroom_jay_is_in_bed','on') %}
+            {{ as_timestamp(now()) - as_timestamp(states('sensor.last_time_jay_entered_bed')) | int }}
+          {% else %}
+            0
+          {% endif %}
+        friendly_name: "Seconds Since Jay Entered Bed"
+        icon_template: 'mdi:bed'
+        entity_id: sensor.date_time
+        unit_of_measurement: seconds
+      seconds_since_jay_left_bed:
+        value_template: >-
+          {% if is_state('binary_sensor.sleep_number_master_bedroom_jay_is_in_bed','on') %}
+            0
+          {% else %}
+            {{ as_timestamp(now()) - as_timestamp(states('sensor.last_time_jay_left_bed')) | int }}
+          {% endif %}
+        friendly_name: "Seconds Since Jay Left Bed"
+        icon_template: 'mdi:bed'
+        entity_id: sensor.date_time
+        unit_of_measurement: seconds
+      seconds_since_michelle_entered_bed:
+        value_template: >-
+          {% if is_state('binary_sensor.sleep_number_master_bedroom_michelle_is_in_bed','on') %}
+            {{ as_timestamp(now()) - as_timestamp(states('sensor.last_time_michelle_entered_bed')) | int }}
+          {% else %}
+            0
+          {% endif %}
+        friendly_name: "Seconds Since Michelle Entered Bed"
+        icon_template: 'mdi:bed'
+        entity_id: sensor.date_time
+        unit_of_measurement: seconds
+      seconds_since_michelle_left_bed:
+        value_template: >-
+          {% if is_state('binary_sensor.sleep_number_master_bedroom_michelle_is_in_bed','on') %}
+            0
+          {% else %}
+            {{ as_timestamp(now()) - as_timestamp(states('sensor.last_time_michelle_left_bed')) | int }}
+          {% endif %}
+        friendly_name: "Seconds Since Michelle Left Bed"
+        icon_template: 'mdi:bed'
+        entity_id: sensor.date_time
+        unit_of_measurement: seconds
+      minutes_since_jay_entered_bed:
+        value_template: "{{ (states('sensor.seconds_since_jay_entered_bed') | float) / 60 }}"
+        friendly_name: "Minutes Since Jay Entered Bed"
+        icon_template: 'mdi:bed'
+        unit_of_measurement: minutes
+      minutes_since_jay_left_bed:
+        value_template: "{{ (states('sensor.seconds_since_jay_left_bed') | float) / 60 }}"
+        friendly_name: "Minutes Since Jay Left Bed"
+        icon_template: 'mdi:bed'
+        unit_of_measurement: minutes
+      minutes_since_michelle_entered_bed:
+        value_template: "{{ (states('sensor.seconds_since_michelle_entered_bed') | float) / 60 }}"
+        friendly_name: "Minutes Since Michelle Entered Bed"
+        icon_template: 'mdi:bed'
+        unit_of_measurement: minutes
+      minutes_since_michelle_left_bed:
+        value_template: "{{ (states('sensor.seconds_since_michelle_left_bed') | float) / 60 }}"
+        friendly_name: "Minutes Since Michelle Left Bed"
+        icon_template: 'mdi:bed'
+        unit_of_measurement: minutes

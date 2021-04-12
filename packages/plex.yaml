@@ -1,0 +1,7 @@
+sensor:
+  - platform: mqtt
+    name: "Plex Playing"
+    state_topic: "plex/update"
+    value_template: '{{ value_json.event == "media.resume" or value_json.event == "media.play" }}'
+    force_update: true
+    json_attributes_topic: "plex/update/attributes"

@@ -1,0 +1,20 @@
+media_player:
+  - platform: androidtv
+    name: Michelle's TV
+    host: 192.168.86.61
+    adb_server_ip: 127.0.0.1
+    
+switch:
+  - platform: template
+    switches:
+      bedroom_tv:
+        friendly_name: Bedroom TV
+        value_template: "{{ not is_state('media_player.michelle_s_tv', 'Unavailable') and not is_state('media_player.michelle_s_tv', 'off') }}"
+        turn_on:
+          service: media_player.turn_on
+          data:
+            entity_id: media_player.michelle_s_tv
+        turn_off:
+          service: media_player.turn_off
+          data:
+            entity_id: media_player.michelle_s_tv

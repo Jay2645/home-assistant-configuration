@@ -1,7 +1,0 @@
-input_select:
- remote:
-   name: Bedroom Remote
-   options:
-     - Power Off
-     - Watch Chromecast
-     - Play Nintendo Switch

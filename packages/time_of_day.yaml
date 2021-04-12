@@ -1,0 +1,50 @@
+binary_sensor:
+  - platform: tod
+    name: Afternoon
+    after: '12:00'
+    before: sunset
+    before_offset: '-1:00'
+  - platform: tod
+    name: Day
+    after: sunrise
+    before: sunset
+  - platform: tod
+    name: Early Morning
+    after: sunrise
+    after_offset: '-2:00'
+    before: '10:00'
+  - platform: tod
+    name: Early Night
+    after: sunset
+    before: '1:00'
+  - platform: tod
+    name: Evening
+    after: sunset
+    after_offset: '-1:00'
+    before: '22:00'
+  - platform: tod
+    name: Late Afternoon
+    after: '14:30'
+    before: sunset
+    before_offset: '-1:00'
+  - platform: tod
+    name: Late Morning
+    after: '10:00'
+    before: '12:00'
+  - platform: tod
+    name: Late Night
+    after: '1:00'
+    before: sunrise
+  - platform: tod
+    name: Midnight
+    after: '22:00'
+    before: '2:00'
+  - platform: tod
+    name: Morning
+    after: sunrise
+    after_offset: '-2:00'
+    before: '12:00'
+  - platform: tod
+    name: Night
+    after: sunset
+    before: sunrise

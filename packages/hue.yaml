@@ -4,3 +4,22 @@ hue:
     filename: phue.conf
     allow_unreachable: false
     allow_hue_groups: true
+
+light:
+  - platform: group
+    name: Office Lights
+    entities:
+      - light.office_light_1
+      - light.office_light_2
+      - light.office_light_3
+  - platform: group
+    name: Main Bedroom Lights
+    entities:
+      - light.bedroom_1
+      - light.bedroom_2
+      - light.bedroom_3
+  - platform: group
+    name: Bedroom Lights
+    entities:
+      - light.main_bedroom_lights
+      - light.bed_headboard

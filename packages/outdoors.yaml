@@ -1,0 +1,55 @@
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+
+sun:
+sensor:
+  - platform: moon
+  - platform: season
+    type: meteorological
+    name: Meteorological Season
+  - platform: season
+    type: astronomical
+    name: Astronomical Season
+  - platform: waqi
+    token: !secret air_quality_token
+    locations:
+      - 'Glendora-Laurel, Los Angeles'
+  - platform: template
+    sensors:
+      outside_temperature:
+        value_template: "{{ state_attr('weather.dark_sky', 'temperature') | float }}"
+        unit_of_measurement: '°F'
+        device_class: temperature
+        icon_template: 'mdi:thermometer'
+      solar_elevation:
+        friendly_name: "Solar Elevation"
+        unit_of_measurement: '°'
+        value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+        icon_template: 'mdi:weather-sunny'
+      solar_azimuth:
+        friendly_name: "Azimuth"
+        unit_of_measurement: '°'
+        value_template: "{{ state_attr('sun.sun', 'azimuth') }}"
+        icon_template: 'mdi:weather-sunny'
+      air_quality:
+        friendly_name: "Air Quality"
+        value_template: >-
+          {% if states('sensor.waqi_glendora_laurel_los_angeles')|int < 51 %}
+            Good
+          {% elif states('sensor.waqi_glendora_laurel_los_angeles')|int < 101 %}
+            Moderate
+          {% elif states('sensor.waqi_glendora_laurel_los_angeles')|int < 151 %}
+            Somewhat Unhealthy
+          {% elif states('sensor.waqi_glendora_laurel_los_angeles')|int < 201 %}
+            Unhealthy
+          {% elif states('sensor.waqi_glendora_laurel_los_angeles')|int < 301 %}
+            Very Unhealthy
+          {% else %}
+            Hazardous
+          {% endif %}
+  - platform: derivative
+    source: sensor.outside_temperature
+    round: 1 
+    unit_time: h
+    time_window: "01:00:00"

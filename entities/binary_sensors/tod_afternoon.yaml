@@ -1,5 +1,0 @@
-platform: tod
-name: Afternoon
-after: '12:00'
-before: sunset
-before_offset: '-1:00'

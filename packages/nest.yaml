@@ -12,12 +12,12 @@ badnest:
   camera_event_minutes: 120 # minutes to get camera events for (optional)
   camera_event_timeout: 1  # minutes for detector to hold a state
 
-climate:
-  - platform: badnest
-    scan_interval: 1
+#climate:
+#  - platform: badnest
+#    scan_interval: 1
 
-camera:
-  - platform: badnest
+#camera:
+#  - platform: badnest
 
 sensor:
   - platform: badnest
@@ -36,3 +36,10 @@ sensor:
     round: 1 
     unit_time: h
     time_window: "01:00:00"
+  - platform: min_max
+    name: Average temperature
+    type: mean
+    entity_ids:
+      - sensor.bedroom_temperature
+      - sensor.family_room_temperature
+      - sensor.office_temperature

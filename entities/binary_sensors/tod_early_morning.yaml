@@ -1,5 +1,0 @@
-platform: tod
-name: Early Morning
-after: sunrise
-after_offset: '-2:00'
-before: '10:00'

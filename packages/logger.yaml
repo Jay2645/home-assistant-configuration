@@ -1,4 +1,0 @@
-logger:
-  default: info
-  logs:
-    homeassistant.components.device_tracker: critical

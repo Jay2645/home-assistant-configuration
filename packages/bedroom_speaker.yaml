@@ -1,0 +1,10 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      white_noise_playing:
+        value_template: >-
+          {{ (is_state('media_player.bedroom_wifi', 'playing') or is_state('media_player.bedroom_wifi', 'idle'))
+            and states.media_player.bedroom_wifi.attributes.media_title == "Rain sounds" }}
+        # 15 second delay to avoid false positives when server restarts
+        delay_off:
+          seconds: 15

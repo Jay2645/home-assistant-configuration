@@ -1,0 +1,59 @@
+# Enable mobile integrations
+mobile_app:
+
+cloud:
+  google_actions:
+    filter:
+      exclude_domains:
+        - camera
+        - climate
+        - group
+        - light
+        - media_player
+        - switch
+        - vacuum
+      exclude_entities:
+        - cover.tradfri_blind
+        - cover.tradfri_blind_2
+        - cover.tradfri_blind_3
+        - cover.tradfri_blind_4
+        - cover.office_blinds
+        - cover.bedroom_blind
+        - lock.euphrates_eevee_charger_door_lock
+        - sensor.euphrates_eevee_temperature_sensor_outside
+      include_entities:
+        - climate.euphrates_eevee_hvac_climate_system
+        - switch.adguard_filtering
+        - switch.euphrates_eevee_charger_switch
+        - switch.euphrates_eevee_sentry_mode_switch
+        - switch.bedroom_tv
+    entity_config:
+      climate.euphrates_eevee_hvac_climate_system:
+        name: Tesla Air Conditioner
+      lock.euphrates_eevee_door_lock:
+        name: Tesla Doors
+        aliases:
+          - Tesla
+      lock.euphrates_eevee_frunk_lock:
+        name: Tesla Frunk
+        aliases:
+          - Frunk
+          - Front Trunk
+      lock.euphrates_eevee_trunk_lock:
+        name: Tesla Trunk
+        aliases:
+          - Trunk
+          - Back Trunk
+          - Rear Trunk
+      sensor.euphrates_eevee_temperature_sensor_inside:
+        name: Tesla Inside Temperature
+      switch.euphrates_eevee_charger_switch:
+        name: Tesla Charger
+      switch.euphrates_eevee_sentry_mode_switch:
+        name: Tesla Sentry Mode
+        aliases:
+          - Sentry Mode
+      switch.bedroom_tv:
+        name: Bedroom TV
+        aliases:
+          - Michelles TV

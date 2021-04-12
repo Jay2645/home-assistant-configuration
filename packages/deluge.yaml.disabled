@@ -1,0 +1,9 @@
+sensor:
+  - platform: deluge
+    host: !secret nas_server_ip
+    username: !secret deluge_username
+    password: !secret deluge_password
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'

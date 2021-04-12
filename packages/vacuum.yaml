@@ -1,4 +1,0 @@
-vacuum:
-  - platform: xiaomi_miio
-    host: 192.168.86.30
-    token: !secret rockrobo_token

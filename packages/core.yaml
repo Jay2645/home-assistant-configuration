@@ -1,0 +1,236 @@
+automation manual: !include_dir_list ../automations
+automation ui: !include ../automations.yaml
+
+binary_sensor:
+  - platform: workday
+    name: workday
+    country: US
+    province: CA
+  - platform: ping
+    host: 8.8.8.8
+    name: WAN
+    scan_interval: 60
+
+config:
+
+# Discover some devices automatically
+discovery:
+
+frontend:
+  themes: !include_dir_merge_named ../customizations/themes/
+
+history:
+
+logbook:
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.device_tracker: critical
+
+recorder:
+  db_url: !secret mysql_database_info
+  purge_keep_days: 4
+  exclude:
+    domains:
+      - automation
+      - calendar
+      - device_tracker
+      - group
+      - script
+      - input_boolean
+      - input_number
+      - input_select
+      - zone
+    entities:
+      - sun.sun
+      - sensor.date_time
+
+# Allow extracting video/audio from websites
+media_extractor:
+
+mqtt:
+  discovery: true
+  discovery_prefix: discovery
+
+person:
+
+# Give the ability to run Python
+python_script:
+
+sensor:
+  - platform: authenticated
+  - platform: uptime
+  - platform: version
+  - platform: time_date
+    display_options:
+      - 'date_time'
+  - platform: template
+    sensors:
+     #----- Count Automations
+      count_automations:
+        value_template: >
+          {%- set domains = ['automation'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Device Trackers
+      count_device_trackers:
+        value_template: >
+          {%- set domains = ['device_tracker'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}       
+     #----- Count Lights
+      count_lights:
+        value_template: >
+          {%- set domains = ['light'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Binary Sensors
+      count_binary_sensors:
+        value_template: >
+          {%- set domains = ['binary_sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Sensors
+      count_sensors:
+        value_template: >
+          {%- set domains = ['sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Switches
+      count_switches:
+        value_template: >
+          {%- set domains = ['switch'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Zones
+      count_zones:
+        value_template: >
+          {%- set domains = ['zone'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Cameras
+      count_cameras:
+        value_template: >
+          {%- set domains = ['camera'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Plants
+      count_plants:
+        value_template: >
+          {%- set domains = ['plant'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Media Players
+      count_media_players:
+        value_template: >
+          {%- set domains = ['media_player'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Scripts
+      count_scripts:
+        value_template: >
+          {%- set domains = ['script'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Locks
+      count_lock:
+        value_template: >
+          {%- set domains = ['lock'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Vacuum
+      count_vacuum:
+        value_template: >
+          {%- set domains = ['vacuum'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+     #----- Count Zwave
+      count_zwave:
+        value_template: >
+          {%- set domains = ['zwave'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+             {% if loop.first %}
+               {{loop.length}}
+             {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+ssdp:
+
+system_health:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# Allow automatic updates
+updater:
+
+zeroconf:

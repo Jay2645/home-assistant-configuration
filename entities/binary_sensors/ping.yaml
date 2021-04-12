@@ -1,4 +1,0 @@
-platform: ping
-host: 8.8.8.8
-name: WAN
-scan_interval: 60

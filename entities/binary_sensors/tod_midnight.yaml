@@ -1,4 +1,0 @@
-platform: tod
-name: Midnight
-after: '22:00'
-before: '2:00'

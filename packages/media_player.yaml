@@ -1,5 +1,0 @@
-media_player:
-  - platform: androidtv
-    name: Michelle's TV
-    host: 192.168.86.61
-    adb_server_ip: 127.0.0.1

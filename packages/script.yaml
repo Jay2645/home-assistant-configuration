@@ -1,8 +1,0 @@
-script:
-  speak:
-    alias: TTS Handler
-    sequence:
-    - data_template:
-        message: '{{ message }}'
-        entity_id: 'group.broadcast_speakers'
-      service: python_script.speak

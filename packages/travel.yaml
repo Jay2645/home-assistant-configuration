@@ -1,0 +1,29 @@
+sensor:
+  - platform: waze_travel_time
+    name: Travel Time Jay Work to Home
+    origin: zone.jay_work
+    destination: zone.home
+    region: 'US'
+    excl_filter: 'HOV'
+    avoid_toll_roads: true
+    avoid_subscription_roads: true
+    avoid_ferries: true
+  - platform: waze_travel_time
+    name: Travel Time Home to Jay Work
+    origin: zone.home
+    destination: zone.jay_work
+    region: 'US'
+    excl_filter: 'HOV'
+    avoid_toll_roads: true
+    avoid_subscription_roads: true
+    avoid_ferries: true
+  - platform: derivative
+    source: sensor.travel_time_home_to_jay_work
+    round: 1 
+    unit_time: h
+    time_window: "00:15:00"
+  - platform: derivative
+    source: sensor.travel_time_jay_work_to_home
+    round: 1 
+    unit_time: h
+    time_window: "00:15:00"
